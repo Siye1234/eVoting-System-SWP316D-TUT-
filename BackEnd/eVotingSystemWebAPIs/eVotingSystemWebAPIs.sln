@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVotingSystemWebAPIs", "eVotingSystemWebAPIs\eVotingSystemWebAPIs.csproj", "{1077B2D9-7F6E-4C54-8AF2-ADEE8D8D4625}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1077B2D9-7F6E-4C54-8AF2-ADEE8D8D4625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1077B2D9-7F6E-4C54-8AF2-ADEE8D8D4625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1077B2D9-7F6E-4C54-8AF2-ADEE8D8D4625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1077B2D9-7F6E-4C54-8AF2-ADEE8D8D4625}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFAB32F6-C555-4E91-B18B-7E555B1FA9FF}
+	EndGlobalSection
+EndGlobal

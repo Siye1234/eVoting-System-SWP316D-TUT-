@@ -1,0 +1,6 @@
+@eVotingSystemWebAPIs_HostAddress = http://localhost:5101
+
+GET {{eVotingSystemWebAPIs_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
