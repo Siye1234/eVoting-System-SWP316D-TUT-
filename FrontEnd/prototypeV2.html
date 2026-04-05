@@ -1,0 +1,285 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>eVoting System</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#0b4ea2;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+}
+
+.navbar h2{
+font-size:20px;
+}
+
+.navbar ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+
+.navbar li{
+cursor:pointer;
+font-size:14px;
+}
+
+/* HERO SECTION */
+
+.hero{
+height:500px;
+display:flex;
+align-items:center;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+padding:80px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:30px;
+}
+
+.hero button{
+padding:12px 30px;
+background:#00c2ff;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+border-radius:5px;
+}
+
+/* FORM POPUP */
+
+.form-container{
+
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+width:350px;
+border-radius:8px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+
+}
+
+.form-container input{
+
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:4px;
+
+}
+
+.form-container button{
+
+width:100%;
+padding:10px;
+background:#0b4ea2;
+color:white;
+border:none;
+cursor:pointer;
+
+}
+
+.close-btn{
+
+position:absolute;
+top:10px;
+right:15px;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+#message{
+margin-top:10px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<h2>Electoral Commission</h2>
+
+
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>Local elections start with you!</h1>
+
+<p>
+Register or update your voting details.<br>
+It's quick, safe and easy.
+</p>
+
+<button onclick="openForm()">Register Now</button>
+
+</div>
+
+</section>
+
+
+
+<!-- REGISTRATION FORM -->
+
+<div class="form-container" id="registerForm">
+
+<span class="close-btn" onclick="closeForm()">X</span>
+
+<h2>Voter Registration</h2>
+
+<form id="form">
+
+<input type="text" id="idNumber" placeholder="ID Number (13 digits)" required>
+
+<input type="email" id="email" placeholder="Email Address" required>
+
+<input type="text" id="address" placeholder="Address" required>
+
+<input type="password" id="password" placeholder="Password" required>
+
+<input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+<button type="submit">Register</button>
+
+<p id="message"></p>
+
+</form>
+
+</div>
+
+
+
+<script>
+
+function openForm(){
+document.getElementById("registerForm").style.display="block";
+}
+
+function closeForm(){
+document.getElementById("registerForm").style.display="none";
+}
+
+
+document.getElementById("form").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let idNumber=document.getElementById("idNumber").value;
+let email=document.getElementById("email").value;
+let address=document.getElementById("address").value;
+let password=document.getElementById("password").value;
+let confirmPassword=document.getElementById("confirmPassword").value;
+
+let message=document.getElementById("message");
+
+
+/* FRONTEND VALIDATION */
+
+if(idNumber.length!==13 || isNaN(idNumber)){
+message.style.color="red";
+message.innerText="ID must be 13 digits";
+return;
+}
+
+if(password!==confirmPassword){
+message.style.color="red";
+message.innerText="Passwords do not match";
+return;
+}
+
+
+/* POST DATA TO BACKEND */
+
+try{
+
+const response = await fetch("http://localhost:3000/register",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+idNumber:idNumber,
+email:email,
+address:address,
+password:password
+
+})
+
+});
+
+
+const data = await response.json();
+
+message.style.color="green";
+message.innerText=data.message;
+
+document.getElementById("form").reset();
+
+}
+catch(error){
+
+message.style.color="red";
+message.innerText="Error connecting to server";
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
+```
