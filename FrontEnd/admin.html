@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+}
+
+/* HEADER */
+header {
+    background: #111827;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* CARDS */
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.green { background: #22c55e; color: white; }
+.red { background: #ef4444; color: white; }
+.blue { background: #3b82f6; color: white; }
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+}
+
+th {
+    background: #111827;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #111827;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* DOCUMENT VIEWER */
+#docViewer {
+    width: 100%;
+    height: 400px;
+}
+
+/* PARTY ITEM */
+.party-item {
+    background: #1f2937;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Admin Dashboard</h2>
+</header>
+
+<div class="container">
+
+    <!-- VOTER COUNT -->
+    <div class="card">
+        <h3>Registered Voters</h3>
+        <h1 id="voterCount">128</h1>
+    </div>
+
+    <!-- ELECTION COUNTDOWN -->
+<div class="card">
+    <h3>Election Countdown</h3>
+    <h1 id="countdownText">Loading...</h1>
+</div>
+
+    <!-- ADDRESS VERIFICATION -->
+    <div class="card">
+        <h3>Proof of Address Verification</h3>
+
+        <table>
+            <tr>
+                <th>ID No</th>
+                <th>Address</th>
+                <th>Proof</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tbody id="userTable"></tbody>
+        </table>
+    </div>
+
+    <!-- PARTY MANAGEMENT -->
+    <div class="card">
+        <h3>Political Parties</h3>
+
+        <button class="green" onclick="openAddModal()">Add Party</button>
+        <button class="red" onclick="openRemoveModal()">Remove Party</button>
+    </div>
+
+</div>
+
+<!-- ===================== -->
+<!-- DOCUMENT VIEW MODAL -->
+<!-- ===================== -->
+<div class="modal" id="docModal">
+    <div class="modal-content">
+        <h3>Proof of Address</h3>
+        <div id="docViewer"></div>
+        <button class="red" onclick="closeDoc()">Close</button>
+    </div>
+</div>
+
+<!-- ADD PARTY MODAL -->
+<div class="modal" id="addModal">
+    <div class="modal-content">
+        <h3>Add Party</h3>
+        <input type="text" id="newParty" style="width:100%;padding:10px;margin-top:10px;">
+        <button class="green" onclick="addParty()">Save</button>
+        <button class="red" onclick="closeModals()">Close</button>
+    </div>
+</div>
+
+<!-- REMOVE PARTY MODAL -->
+<div class="modal" id="removeModal">
+    <div class="modal-content">
+        <h3>Remove Party</h3>
+        <div id="partyList"></div>
+        <button class="red" onclick="closeModals()">Close</button>
+    </div>
+</div>
+
+<script>
+
+let users = [];
+
+// ================= TOKEN =================
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+async function loadUsers() {
+    try {
+        const res = await fetch("https://localhost:7245/api/Admin/registrations/pending");
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        users = await res.json();
+
+        console.log("LOADED USERS:", users); // 🔥 debug check
+
+        renderTable();
+
+    } catch (err) {
+        console.log("LOAD ERROR:", err);
+    }
+}
+
+// ================= RENDER TABLE =================
+function renderTable() {
+
+    const table = document.getElementById("userTable");
+    table.innerHTML = "";
+
+    users.forEach((u, index) => {
+
+        let color =
+            u.documentStatus === "Approved" ? "#22c55e" :
+            u.documentStatus === "Rejected" ? "#ef4444" : "#facc15";
+
+        table.innerHTML += `
+            <tr>
+                <td>${u.idNo}</td>
+                <td>${u.residentialAddress || "N/A"}</td>
+                <td>
+                    <button class="blue" onclick="viewDoc(${index})">View</button>
+                </td>
+
+                <td style="color:${color}">
+                    ${u.documentStatus || "Pending"}
+                    ${u.documentRejectionReason ? `<br><small>${u.documentRejectionReason}</small>` : ""}
+                </td>
+
+                <td>
+                    <button class="green" onclick="approve(${index})">Approve</button>
+                    <button class="red" onclick="reject(${index})">Reject</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+//VIEW DOCUMENT
+function viewDoc(i) {
+
+    const file = users[i].proofOfAddressPath;
+
+    const fullUrl = `https://localhost:7245${file}`; // 🔥 IMPORTANT FIX
+
+    const viewer = document.getElementById("docViewer");
+
+    if (!file) {
+        viewer.innerHTML = "<p>No document uploaded</p>";
+        return;
+    }
+
+    if (file.endsWith(".pdf")) {
+        viewer.innerHTML = `
+            <iframe src="${fullUrl}" width="100%" height="400px"></iframe>
+        `;
+    }
+    else {
+        viewer.innerHTML = `
+            <img src="${fullUrl}" style="width:100%;height:400px;object-fit:contain;">
+        `;
+    }
+
+    document.getElementById("docModal").style.display = "flex";
+}
+
+function closeDoc() {
+    document.getElementById("docModal").style.display = "none";
+    document.getElementById("docViewer").innerHTML = "";
+}
+
+// APPROVE 
+async function approve(index) {
+
+    const user = users[index];
+
+    let commentInput = prompt("Approval comment (optional):");
+
+    // clean handling of cancel / empty input
+    const comment = null
+
+    try {
+        const res = await fetch("https://localhost:7245/api/Admin/approve", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+            body: JSON.stringify({
+                idNo: user.idNo,
+                comment: comment
+            })
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        alert("Document approved ✔");
+
+        loadUsers();
+        loadVoterCount();
+
+    } catch (err) {
+        console.log(err);
+        alert("Error approving document");
+    }
+}
+
+//REJECT 
+async function reject(index) {
+
+    const user = users[index];
+
+    
+
+    const comment = prompt("Enter rejection reason:");
+    if (!comment || comment.trim() === "") {
+        alert("Reason required");
+        return;
+    }
+    try {
+        const res = await fetch("https://localhost:7245/api/Admin/reject", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+            body: JSON.stringify({
+                idNo: user.idNo,
+                comment: comment
+            })
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        alert("Document rejected ❌");
+
+        loadUsers();
+        loadVoterCount();
+
+    } catch (err) {
+        console.log(err);
+        alert("Error rejecting document");
+    }
+}
+
+// ================= MOCK ELECTION COUNTDOWN =================
+function loadElectionDate() {
+
+    const now = new Date();
+    const electionDate = new Date();
+    electionDate.setMonth(now.getMonth() + 11);
+
+    setInterval(() => {
+
+        const currentTime = new Date();
+        const diff = electionDate - currentTime;
+
+        if (diff <= 0) {
+            document.getElementById("countdownText").innerText = "Election Started 🟢";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("countdownText").innerText =
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    }, 1000);
+}
+
+// ================= REGISTERED VOTERS (DB) =================
+async function loadVoterCount() {
+
+    try {
+        const res = await fetch("https://localhost:7245/api/VotingRegistration/voters/count", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        if (!res.ok) {
+            document.getElementById("voterCount").innerText = "Error";
+            return;
+        }
+
+        const data = await res.json();
+        document.getElementById("voterCount").innerText = data.count;
+
+    } catch (err) {
+        console.log("Count error:", err);
+        document.getElementById("voterCount").innerText = "Error";
+    }
+}
+
+// ================= INIT =================
+loadUsers();
+loadElectionDate();
+loadVoterCount();
+
+</script>
+
+</body>
+</html>

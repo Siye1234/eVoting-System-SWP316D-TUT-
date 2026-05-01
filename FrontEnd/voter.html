@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voter Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+}
+
+/* HEADER */
+header {
+    background: #111827;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+header button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+}
+
+.status-btn { background: #3b82f6; }   /* NEW */
+.history-btn { background: #22c55e; }
+.logout-btn { background: #ef4444; }
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* CARD */
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+}
+
+th {
+    background: #111827;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-blue {
+    background: #3b82f6;
+    color: white;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #111827;
+    padding: 20px;
+    border-radius: 10px;
+    width: 320px;
+}
+
+.history-item {
+    padding: 10px;
+    background: #1f2937;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
+.close-btn {
+    background: #ef4444;
+    padding: 8px 12px;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Voter Dashboard</h2>
+
+    <div class="header-actions">
+
+        <!-- ✅ NEW BUTTON ADDED -->
+        <button class="status-btn" onclick="openStatus()">Check Status</button>
+
+        <button class="history-btn" onclick="openHistory()">My Voting History</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Next National Election</h3>
+        <p id="countdown"></p>
+        <p id="regStatus" style="margin-top:10px;font-weight:bold;"></p>
+
+        <button class="btn btn-blue" onclick="registerToVote()">
+            Register to Vote
+        </button>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h3>South Africa National Election History</h3>
+
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Winning Party</th>
+                <th>Percentage</th>
+            </tr>
+
+            <tr><td>1994</td><td>ANC</td><td>62.6%</td></tr>
+            <tr><td>1999</td><td>ANC</td><td>66.4%</td></tr>
+            <tr><td>2004</td><td>ANC</td><td>69.7%</td></tr>
+            <tr><td>2009</td><td>ANC</td><td>65.9%</td></tr>
+            <tr><td>2014</td><td>ANC</td><td>62.1%</td></tr>
+            <tr><td>2019</td><td>ANC</td><td>57.5%</td></tr>
+            <tr><td>2021</td><td>ANC (Local)</td><td>46.0%</td></tr>
+            <tr><td>2024</td><td>ANC</td><td>~40–45%</td></tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="infoModal">
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal()">Close</button>
+
+        <h3 id="modalTitle">Info</h3>
+
+        <div id="historyContainer"></div>
+        <div id="statusContainer"></div>
+
+    </div>
+</div>
+
+<script>
+
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
+
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+if (!token || role !== "Voter") {
+    alert("Access denied. Please login as Voter.");
+    window.location.href = "login.html";
+}
+
+// ================= ELECTION TIMER =================
+const electionDate = new Date();
+electionDate.setMonth(electionDate.getMonth() + 11);
+
+function updateUI() {
+    const now = new Date();
+    const diff = electionDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const months = Math.floor(days / 30);
+
+    document.getElementById("countdown").innerText =
+        months + " months (" + days + " days remaining)";
+}
+
+// ================= REGISTER =================
+function registerToVote() {
+    window.location.href = "voting_registration.html";
+}
+
+// ================= HISTORY =================
+function openHistory() {
+
+    document.getElementById("modalTitle").innerText = "My Voting History";
+
+    document.getElementById("statusContainer").style.display = "none";
+    document.getElementById("historyContainer").style.display = "block";
+
+    const history = [
+        "2024-05-29",
+        "2019-05-08",
+        "2014-05-07",
+        "2009-04-22"
+    ];
+
+    const container = document.getElementById("historyContainer");
+    container.innerHTML = "";
+
+    history.forEach(date => {
+        const div = document.createElement("div");
+        div.className = "history-item";
+        div.innerText = date;
+        container.appendChild(div);
+    });
+
+    document.getElementById("infoModal").style.display = "flex";
+}
+
+// ================= CHECK STATUS (NEW BUTTON) =================
+function openStatus() {
+
+    document.getElementById("modalTitle").innerText = "My Voting Status";
+
+    document.getElementById("historyContainer").style.display = "none";
+    document.getElementById("statusContainer").style.display = "block";
+
+    loadMyStatus();
+
+    document.getElementById("infoModal").style.display = "flex";
+}
+
+// ================= LOAD STATUS FROM API =================
+async function loadMyStatus() {
+
+    try {
+        const res = await fetch("https://localhost:7245/api/Voter/my-status", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const data = await res.json();
+
+        let html = "";
+
+        data.forEach(v => {
+
+            let status =
+                v.isApproved === true ? "Approved ✔" :
+                v.isApproved === false ? "Rejected ❌" :
+                "Pending ⏳";
+
+            html += `
+                <div style="padding:10px;margin-bottom:10px;background:#1f2937;border-radius:8px;">
+                    <p><b>Status:</b> ${status}</p>
+                    <p><b>Comment:</b> ${v.adminComment ?? "No comment"}</p>
+                </div>
+            `;
+        });
+
+        document.getElementById("statusContainer").innerHTML = html;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+// ================= MODAL CLOSE =================
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
+// ================= LOGOUT =================
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+updateUI();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voting Registration</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #111827);
+    color: white;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+}
+
+.card {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #22c55e;
+}
+
+.section {
+    margin-top: 15px;
+    padding: 15px;
+    background: #111827;
+    border-radius: 10px;
+}
+
+.checkbox {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary { background: #22c55e; }
+.camera-btn { background: #3b82f6; }
+.capture-btn { background: #ef4444; }
+
+video, img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.status {
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h2>Voting Registration</h2>
+
+<!-- NATIONAL -->
+<div class="section">
+    <h3>National Election</h3>
+    <p></p>
+</div>
+
+<!-- PROVINCIAL -->
+<div class="section">
+    <h3>Provincial Election</h3>
+    <div class="checkbox">
+        <input type="checkbox" id="provCheck" onchange="toggleProv()">
+        <label>Tick The Box to Register for Provincial and Reginal</label>
+    </div>
+</div>
+
+<!-- PROV SECTION -->
+<div class="section" id="provSection" style="display:none;">
+
+    <label>Address</label>
+    <input type="text" id="address">
+
+    <label>Upload Proof (PDF)</label>
+    <input type="file" id="proofFile" accept=".pdf">
+</div>
+
+<!-- FACE SCAN (ALWAYS REQUIRED) -->
+<div class="section">
+
+    <h3>TAKE A PICTURE</h3>
+
+    <video id="video" autoplay></video>
+    <img id="preview" style="display:none;">
+
+    <button class="camera-btn" onclick="startCamera()">Start Camera</button>
+    <button class="capture-btn" onclick="captureFace()">Capture Face</button>
+
+    <p id="status"></p>
+
+</div>
+
+<button class="primary" onclick="submitRegistration()">Submit</button>
+
+</div>
+</div>
+
+<script>
+
+let currentStream = null;
+
+// ================= TOGGLE =================
+function toggleProv() {
+    document.getElementById("provSection").style.display =
+        document.getElementById("provCheck").checked ? "block" : "none";
+}
+
+// ================= CAMERA =================
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            currentStream = stream;
+            document.getElementById("video").srcObject = stream;
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Camera access denied");
+        });
+}
+
+// ================= CAPTURE FACE =================
+function captureFace() {
+
+    const video = document.getElementById("video");
+
+    if (!video.videoWidth) {
+        alert("Camera not ready");
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    canvas.getContext("2d").drawImage(video, 0, 0);
+
+    canvas.toBlob(blob => {
+
+        const preview = document.getElementById("preview");
+        preview.src = URL.createObjectURL(blob);
+        preview.style.display = "block";
+
+        document.getElementById("status").innerText = "Face captured ✔";
+
+        // STOP CAMERA
+        if (currentStream) {
+            currentStream.getTracks().forEach(t => t.stop());
+            currentStream = null;
+        }
+
+        video.srcObject = null;
+
+        // store blob globally
+        window.capturedBlob = blob;
+
+    }, "image/png");
+}
+
+// ================= SUBMIT REGISTRATION =================
+async function submitRegistration() {
+
+    const token = localStorage.getItem("token");
+    const isProv = document.getElementById("provCheck").checked;
+
+    if (!token) {
+        alert("Session expired. Please login again.");
+        return;
+    }
+
+    // Face is required (based on your system rule)
+    if (!window.capturedBlob) {
+        alert("Face capture is required");
+        return;
+    }
+
+    let address = "";
+    let proofFile = null;
+
+    if (isProv) {
+
+        address = document.getElementById("address").value;
+
+        if (!address) {
+            alert("Residential address is required for Provincial registration");
+            return;
+        }
+
+        proofFile = document.getElementById("proofFile").files[0];
+
+        if (!proofFile) {
+            alert("Proof of address is required for Provincial registration");
+            return;
+        }
+    }
+
+    // ================= BUILD FORM DATA =================
+    const formData = new FormData();
+
+    formData.append("ElectionType", isProv ? 2 : 1);
+    formData.append("ResidentialAddress", address);
+
+    // Attach FACE always (if backend uses it)
+    const faceFile = new File([window.capturedBlob], "face.png", {
+        type: "image/png"
+    });
+
+    formData.append("FaceImage", faceFile);
+
+    // Only attach proof if provincial
+    if (isProv) {
+        formData.append("ProofFile", proofFile);
+    }
+
+    try {
+
+        const res = await fetch("https://localhost:7245/api/VotingRegistration/register", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+                // ❌ DO NOT set Content-Type
+            },
+            body: formData
+        });
+
+        const text = await res.text();
+
+        if (!res.ok) {
+            console.log("ERROR:", text);
+            alert(text);
+            return;
+        }
+
+        alert("Voting registration successful ✔");
+
+        window.location.href = "voter.html";
+
+    } catch (err) {
+        console.log(err);
+        alert("Server error");
+    }
+}
+
+</script>
+
+</body>
+</html>
