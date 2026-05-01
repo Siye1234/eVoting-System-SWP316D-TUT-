@@ -1,0 +1,200 @@
+[
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "Approve",
+    "RelativePath": "api/Admin/approve",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ApproveRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "GetPendingDocuments",
+    "RelativePath": "api/Admin/registrations/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "Reject",
+    "RelativePath": "api/Admin/reject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.RejectRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "Count",
+    "RelativePath": "api/Admin/voters/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "UpdateVoter",
+    "RelativePath": "api/Voter",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reg",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.UpdateVoterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "Login",
+    "RelativePath": "api/Voter/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "GetMyStatus",
+    "RelativePath": "api/Voter/my-status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "RegisterVoter",
+    "RelativePath": "api/Voter/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reg",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.RegisterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingRegistrationController",
+    "Method": "MyRegistrations",
+    "RelativePath": "api/VotingRegistration/my-registrations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingRegistrationController",
+    "Method": "Register",
+    "RelativePath": "api/VotingRegistration/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ElectionType",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ResidentialAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProofFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "FaceImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingRegistrationController",
+    "Method": "Count",
+    "RelativePath": "api/VotingRegistration/voters/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[eVotingSystemWebAPIsBackUp.WeatherForecast, eVotingSystemWebAPIsBackUp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
