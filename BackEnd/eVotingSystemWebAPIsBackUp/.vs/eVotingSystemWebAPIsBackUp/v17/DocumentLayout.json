@@ -3,52 +3,84 @@
   "WorkspaceRootPath": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\evotingsystemwebapisbackup.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\rejectrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\rejectrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\votingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\votingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\votedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\votedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\superadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\superadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\createpartydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\createpartydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\electiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\electiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\createadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\createadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\ballotdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\ballotdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\election.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\election.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\superadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\superadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\politicalparty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\politicalparty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\votingregistrationcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\votingregistrationcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\votercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\votercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\approverequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\approverequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\addressverificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\addressverificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\adminresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\adminresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\votingregistrationfulldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\votingregistrationfulldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\updatevoterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\updatevoterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\votingregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\votingregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\voter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\voter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\votingregistrationcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\votingregistrationcontroller .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\vote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\vote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,48 +91,40 @@
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\services\\filestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\services\\filestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415161846_ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415161846_ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415002239_addd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415002239_addd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\services\\filestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\services\\filestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\createsuperadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\createsuperadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\updatevoterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\updatevoterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\rejectrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\rejectrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\adminresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\adminresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\voter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\voter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\dtos\\createadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\dtos\\createadmindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260412234514_addvotingregistrationsss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260412234514_addvotingregistrationsss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\electiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\models\\electiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\data\\homeaffairs\\homeaffairsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\data\\homeaffairs\\homeaffairsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -151,28 +175,16 @@
       "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260414195028_m.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415001032_adddd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415001032_adddd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260501140937_addvotestable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260501140937_addvotestable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260416001048_aaaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260416001048_aaaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260501130824_initi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260501130824_initi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415204300_aaaa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415204300_aaaa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415204116_aaa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415204116_aaa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415202421_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415202421_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260415171234_a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260415171234_a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|c:\\cs316d\\swp project\\backend\\evotingsystemwebapisbackup\\evotingsystemwebapisbackup\\migrations\\20260502170139_addq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA2B5B6A-FF5E-4CAC-9AA7-D2C072838DDF}|eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj|solutionrelative:evotingsystemwebapisbackup\\migrations\\20260502170139_addq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -182,132 +194,399 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AddressVerificationDTO.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AddressVerificationDTO.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\AddressVerificationDTO.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AddressVerificationDTO.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\AddressVerificationDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T21:13:31.142Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T21:19:01.977Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VoterController.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAYwKUAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T21:21:56.181Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\appsettings.json",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\appsettings.json",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\appsettings.json",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-12T21:10:46.684Z",
+              "Title": "20260505011656_addddssnsns.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260505011656_addddssnsns.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T01:16:56.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreatePartyDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreatePartyDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\CreatePartyDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreatePartyDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\CreatePartyDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T07:36:05.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "eVotingSystemWebAPIsBackUp.csproj",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-12T21:32:02.62Z"
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAQwLQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T12:59:44.433Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ApproveRequestDTO.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\ApproveRequestDTO.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\ApproveRequestDTO.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\ApproveRequestDTO.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\ApproveRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAASAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SuperAdminController.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\SuperAdminController.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\SuperAdminController.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\SuperAdminController.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\SuperAdminController.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAlwJ8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T01:09:36.194Z"
+              "WhenOpened": "2026-05-01T13:00:23.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VotingController.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingController.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingController.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingController.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAhwGAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:57:39.907Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "RejectRequestDTO.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "Title": "VoteDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\VoteDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\VoteDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\VoteDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\VoteDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T01:14:03.938Z"
+              "WhenOpened": "2026-05-01T14:02:36.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ElectionType.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T22:42:42.124Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "AdminResponseDTO.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Title": "CreateAdminDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T23:37:27.846Z"
+              "WhenOpened": "2026-05-01T13:21:58.526Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "BallotDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\BallotDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\BallotDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\BallotDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\BallotDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:52:24.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T21:05:12.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Election.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Election.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Election.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Election.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Election.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:04:58.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SuperAdmin.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\SuperAdmin.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\SuperAdmin.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\SuperAdmin.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\SuperAdmin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T23:32:14.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PoliticalParty.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\PoliticalParty.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\PoliticalParty.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\PoliticalParty.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\PoliticalParty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:04:16.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20260504225521_addddsss.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260504225521_addddsss.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T22:55:22.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "VotingRegistrationController .cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAQwEsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T19:30:30.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "VoterController.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\VoterController.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAuwKIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:29:27.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VotingRegistration.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\VotingRegistration.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\VotingRegistration.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\VotingRegistration.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\VotingRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T18:54:42.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "VotingRegistrationFullDTO.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\VotingRegistrationFullDTO.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\VotingRegistrationFullDTO.cs",
               "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\VotingRegistrationFullDTO.cs",
               "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\VotingRegistrationFullDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:14:21.991Z"
+              "WhenOpened": "2026-05-03T18:54:46.943Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
+              "Title": "Voter.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T22:21:00.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "20260502170139_addq.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260502170139_addq.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260502170139_addq.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260502170139_addq.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260502170139_addq.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:01:39.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Vote.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Vote.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Vote.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Vote.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Vote.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAmwAwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T14:08:07.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAlwCQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:06:23.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwB8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T21:14:56.713Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Program.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Program.cs",
               "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Program.cs",
               "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Program.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAUwFIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAQwDYAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-12T21:12:29.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 23,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T13:58:14.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "FileStorageService.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T14:21:52.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "20260501140937_AddVotesTable.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260501140937_AddVotesTable.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260501140937_AddVotesTable.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260501140937_AddVotesTable.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260501140937_AddVotesTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T14:09:37.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CreateSuperAdminDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\CreateSuperAdminDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\CreateSuperAdminDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\CreateSuperAdminDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\CreateSuperAdminDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:31:42.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "20260501130824_initi.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260501130824_initi.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260501130824_initi.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260501130824_initi.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260501130824_initi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T13:08:25.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RejectRequestDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\RejectRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T12:59:31.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AdminResponseDTO.cs",
+              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
+              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
+              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
+              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\AdminResponseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T12:59:19.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "UpdateVoterDTO.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\UpdateVoterDTO.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\UpdateVoterDTO.cs",
@@ -319,187 +598,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "VotingRegistrationController .cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\VotingRegistrationController .cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAYwGAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T22:52:04.816Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "20260416001048_aaaas.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260416001048_aaaas.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260416001048_aaaas.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260416001048_aaaas.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260416001048_aaaas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T00:10:48.881Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAiwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T23:33:58.664Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "20260415204300_aaaa.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415204300_aaaa.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415204300_aaaa.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415204300_aaaa.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415204300_aaaa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T20:43:01.214Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "20260415204116_aaa.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415204116_aaa.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415204116_aaa.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415204116_aaa.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415204116_aaa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T20:41:16.768Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "20260415202421_aa.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415202421_aa.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415202421_aa.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415202421_aa.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415202421_aa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T20:24:21.679Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Services\\JwtService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowCwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T21:14:56.713Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "FileStorageService.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Services\\FileStorageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:16:22.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "20260415171234_a.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415171234_a.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415171234_a.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415171234_a.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415171234_a.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T17:12:35.136Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "20260415161846_ad.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415161846_ad.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415161846_ad.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415161846_ad.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415161846_ad.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T16:18:47.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Voter.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Voter.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAA7wBYAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T22:21:00.553Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "20260415002239_addd.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415002239_addd.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415002239_addd.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415002239_addd.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415002239_addd.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T00:22:39.411Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAowEUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T13:58:14.787Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "CreateAdminDTO.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\DTOs\\CreateAdminDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T23:36:58.903Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "20260415001032_adddd.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415001032_adddd.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415001032_adddd.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260415001032_adddd.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Migrations\\20260415001032_adddd.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T00:10:33Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "RegisterDTO.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\RegisterDTO.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\RegisterDTO.cs",
@@ -511,19 +610,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Admin.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\Admin.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAqwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T21:05:12.837Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 39,
               "Title": "20260414213658_mmmm.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260414213658_mmmm.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260414213658_mmmm.cs",
@@ -535,7 +622,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 40,
               "Title": "20260414211532_mmm.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260414211532_mmm.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260414211532_mmm.cs",
@@ -547,7 +634,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 41,
               "Title": "20260414200139_mm.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260414200139_mm.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260414200139_mm.cs",
@@ -559,7 +646,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 42,
               "Title": "20260414195028_m.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260414195028_m.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260414195028_m.cs",
@@ -571,7 +658,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 30,
               "Title": "20260412234514_AddVotingRegistrationsss.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412234514_AddVotingRegistrationsss.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412234514_AddVotingRegistrationsss.cs",
@@ -583,7 +670,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 38,
               "Title": "20260412225553_AddVotingRegistrations.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412225553_AddVotingRegistrations.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412225553_AddVotingRegistrations.cs",
@@ -595,31 +682,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ElectionType.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Models\\ElectionType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T22:46:51.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "HomeAffairsDbContext.cs",
-              "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\HomeAffairs\\HomeAffairsDbContext.cs",
-              "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Data\\HomeAffairs\\HomeAffairsDbContext.cs",
-              "ToolTip": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\HomeAffairs\\HomeAffairsDbContext.cs",
-              "RelativeToolTip": "eVotingSystemWebAPIsBackUp\\Data\\HomeAffairs\\HomeAffairsDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T22:27:51.766Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "Person.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Models\\Person.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Models\\Person.cs",
@@ -631,7 +694,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 37,
               "Title": "20260412222821_i.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412222821_i.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412222821_i.cs",
@@ -643,7 +706,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 32,
               "Title": "HomeAffairsDbContext.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Data\\HomeAffairsDbContext.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Data\\HomeAffairsDbContext.cs",
@@ -655,7 +718,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "20260412214723_onesss.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412214723_onesss.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412214723_onesss.cs",
@@ -666,7 +729,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 34,
               "Title": "20260412214001_ones.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412214001_ones.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412214001_ones.cs",
@@ -677,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 35,
               "Title": "20260412213739_ones.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\Migrations\\20260412213739_ones.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\Migrations\\20260412213739_ones.cs",
@@ -688,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 36,
               "Title": "LoginDTO.cs",
               "DocumentMoniker": "C:\\CS316D\\SWP Project\\BackEnd\\eVotingSystemWebAPIsBackUp\\eVotingSystemWebAPIsBackUp\\DTOs\\LoginDTO.cs",
               "RelativeDocumentMoniker": "eVotingSystemWebAPIsBackUp\\DTOs\\LoginDTO.cs",

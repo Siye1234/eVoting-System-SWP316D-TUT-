@@ -23,10 +23,28 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             _hasher = new PasswordHasher<string>();
         }
 
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO login)
         {
-           
+            var super_admin = await _context.SuperAdmins
+                .FirstOrDefaultAsync(a => a.StaffNumber == login.IdNo);
+
+            if (super_admin != null)
+            {
+                var result = _hasher.VerifyHashedPassword(login.IdNo, super_admin.PasswordHash, login.Password);
+
+                if (result == PasswordVerificationResult.Success)
+                {
+                    return Ok(new
+                    {
+                        token = _jwtService.GenerateToken(super_admin.StaffNumber, "SuperAdmin"),
+                        role = "SuperAdmin",
+                        idNo = super_admin.StaffNumber
+                    });
+                }
+            }
+
             var admin = await _context.Admins
                 .FirstOrDefaultAsync(a => a.StaffNumber == login.IdNo);
 

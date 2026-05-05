@@ -17,6 +17,59 @@
   },
   {
     "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "CreateAdmin",
+    "RelativePath": "api/Admin/create-admin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.CreateAdminDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "CreateParty",
+    "RelativePath": "api/Admin/create-party",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PartyName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Logo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
+    "Method": "DeleteParty",
+    "RelativePath": "api/Admin/delete-party/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.AdminController",
     "Method": "GetPendingDocuments",
     "RelativePath": "api/Admin/registrations/pending",
     "HttpMethod": "GET",
@@ -63,6 +116,95 @@
         "Name": "login",
         "Type": "eVotingSystemWebAPIsBackUp.DTOs.LoginDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "ApproveParty",
+    "RelativePath": "api/SuperAdmin/approve-party/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "GetBallotParties",
+    "RelativePath": "api/SuperAdmin/ballot-parties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "CreateSuperAdmin",
+    "RelativePath": "api/SuperAdmin/create-super-admin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "eVotingSystemWebAPIsBackUp.CreateSuperAdminDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "GetParties",
+    "RelativePath": "api/SuperAdmin/get-parties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "RejectParty",
+    "RelativePath": "api/SuperAdmin/reject-party/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "SetElectionDates",
+    "RelativePath": "api/SuperAdmin/set-election-dates",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -123,6 +265,42 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingController",
+    "Method": "GetBallot",
+    "RelativePath": "api/Voting/ballot",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingController",
+    "Method": "CastVote",
+    "RelativePath": "api/Voting/cast-vote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "eVotingSystemWebAPIsBackUp.DTOs.VoteDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingController",
+    "Method": "GetElectionStatus",
+    "RelativePath": "api/Voting/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

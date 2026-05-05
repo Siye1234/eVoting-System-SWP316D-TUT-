@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SuperAdmin Dashboard</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* HEADER */
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* CONTAINER */
+        .container {
+            padding: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        /* INPUTS */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+        }
+
+        /* BUTTONS */
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-success {
+            background: #16a34a;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+      
+        .party {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .party:last-child {
+            border-bottom: none;
+        }
+
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+
+.btn {
+    max-width: 320px;
+}
+
+
+footer p {
+    padding: 0 10px;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    🗳️ SuperAdmin Dashboard - eVoting System
+</div>
+
+<div class="container">
+
+
+    <div class="grid">
+
+        <!-- CREATE ADMIN -->
+        <div class="card">
+            <h2>Create Admin</h2>
+            <input id="staffNumber" placeholder="Staff Number" required />
+            <input id="name" placeholder="Name" required/>
+            <input id="surname" placeholder="Surname" required />
+            <input id="password" type="password" placeholder="Password" required />
+            <button onclick="createAdmin()">Create Admin</button>
+        </div>
+
+        <!-- ELECTION -->
+        <div class="card">
+            <h2>Set Election Dates</h2>
+            <label for="startDate">Start Date:</label>
+            <input id="startDate" type="date" />
+            <label for="endDate">End Date:</label>
+            <input id="endDate" type="date" />
+            <button onclick="setElection()">Set Election</button>
+        </div>
+
+    </div>
+
+    <!-- PARTIES -->
+    <div class="card">
+        <h2>Political Parties (Pending Approval)</h2>
+        <button onclick="loadParties()">Refresh</button>
+        <div id="parties"></div>
+    </div>
+
+</div>
+
+<script>
+let token = localStorage.getItem("token");
+
+//REDIRECT IF NOT LOGGED IN
+if (!token) {
+    alert("You are not logged in");
+    window.location.href = "index.html";
+}
+
+//  CLEAR FORM ON LOAD
+window.onload = () => {
+    clearAdminForm();
+    loadParties(); 
+};
+
+//  CLEAR FUNCTION
+function clearAdminForm() {
+    document.getElementById("staffNumber").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("surname").value = "";
+    document.getElementById("password").value = "";
+}
+
+// CREATE ADMIN
+async function createAdmin() {
+
+    const staffNumber = document.getElementById("staffNumber").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const surname = document.getElementById("surname").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!staffNumber || !name || !surname || !password) {
+        alert("All fields are required");
+        return;
+    }
+
+    const res = await fetch("https://localhost:7245/api/Admin/create-admin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            staffNumber,
+            name,
+            surname,
+            password
+        })
+    });
+
+    if (!res.ok) {
+        alert(await res.text());
+        return;
+    }
+
+    alert("Admin created successfully");
+    clearAdminForm();
+}
+
+// SET ELECTION
+async function setElection() {
+
+    const start = document.getElementById("startDate").value;
+    const end = document.getElementById("endDate").value;
+
+    if (!start || !end) {
+        alert("Both dates are required");
+        return;
+    }
+
+    const res = await fetch(
+        `https://localhost:7245/api/SuperAdmin/set-election-dates?startDate=${start}&endDate=${end}`,
+        {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        }
+    );
+
+    if (!res.ok) {
+        alert(await res.text());
+        return;
+    }
+
+    alert("Election updated");
+}
+
+// 🔥 FIXED: LOAD PENDING PARTIES (CORRECT ENDPOINT)
+async function loadParties() {
+
+    try {
+        const res = await fetch("https://localhost:7245/api/SuperAdmin/get-parties", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!res.ok) {
+            console.log("API ERROR:", await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        let html = "";
+
+        // FILTER ONLY PENDING
+        const pending = data.filter(p => !p.isApproved && !p.isRejected);
+
+        if (pending.length === 0) {
+            document.getElementById("parties").innerHTML = "<p>No pending parties</p>";
+            return;
+        }
+
+        pending.forEach(p => {
+
+            const name = p.partyName ?? "No Name";
+
+            const logo = p.logoUrl
+                ? `https://localhost:7245${p.logoUrl}`
+                : null;
+
+            html += `
+                <div class="party">
+                    <span>
+                        ${logo ? `<img src="${logo}" width="30" height="30">` : ""}
+                        ${name} - Pending ⏳
+                    </span>
+
+                    <div>
+                        <button onclick="approve(${p.id})">Approve</button>
+                        <button onclick="reject(${p.id})">Reject</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        document.getElementById("parties").innerHTML = html;
+
+    } catch (err) {
+        console.log("LOAD ERROR:", err);
+    }
+}
+
+// APPROVE
+async function approve(id) {
+
+    const res = await fetch(`https://localhost:7245/api/SuperAdmin/approve-party/${id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    if (!res.ok) {
+        alert("Failed to approve");
+        return;
+    }
+
+    await loadParties();
+}
+
+// REJECT
+async function reject(id) {
+
+    const res = await fetch(`https://localhost:7245/api/SuperAdmin/reject-party/${id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    if (!res.ok) {
+        alert("Failed to reject");
+        return;
+    }
+
+    await loadParties();
+}
+</script>
+
+</body>
+</html>

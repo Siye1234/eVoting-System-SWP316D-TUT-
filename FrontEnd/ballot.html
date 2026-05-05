@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ballot</title>
+
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.party {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 10px;
+    background: #111827;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.party img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.party.selected {
+    border: 2px solid #22c55e;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #22c55e;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Select a Party</h2>
+
+        <div id="partyList"></div>
+
+        <button onclick="submitVote()">Submit Vote</button>
+    </div>
+</div>
+
+<script>
+
+const token = localStorage.getItem("token");
+
+let isSubmitting = false;
+
+
+// STATE (REFRESH SAFE)
+let selectedVotes = JSON.parse(localStorage.getItem("selectedVotes")) || {
+    national: null,
+    provincial: null,
+    regional: null
+};
+
+
+// LOAD BALLOTS
+async function loadParties() {
+
+    try {
+        const res = await fetch("https://localhost:7245/api/SuperAdmin/ballot-parties", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        const data = await res.json();
+        const container = document.getElementById("partyList");
+
+        container.innerHTML = "";
+
+        function renderGroup(title, list, type) {
+
+            if (!list || list.length === 0) return;
+
+            const group = document.createElement("div");
+            group.className = "ballot-group";
+
+            const header = document.createElement("h3");
+            header.innerText = title;
+            group.appendChild(header);
+
+            list.forEach(p => {
+
+                const div = document.createElement("div");
+                div.className = "party";
+
+                const img = p.logoUrl.startsWith("http")
+                    ? p.logoUrl
+                    : `https://localhost:7245${p.logoUrl}`;
+
+                div.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <img src="${img}" width="40" height="40"/>
+                        <span>${p.partyName}</span>
+                    </div>
+                `;
+
+                div.onclick = () => selectParty(div, p.id, type);
+
+                // restore selection UI
+                if (selectedVotes[type] === p.id) {
+                    div.classList.add("selected");
+                }
+
+                group.appendChild(div);
+            });
+
+            container.appendChild(group);
+        }
+
+        renderGroup("Ballot 1: National", data.national, "national");
+        renderGroup("Ballot 2: Provincial", data.provincial, "provincial");
+        renderGroup("Ballot 3: Regional", data.regional, "regional");
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+// SELECT PARTY
+function selectParty(element, id, type) {
+
+    const group = element.closest(".ballot-group");
+
+    group.querySelectorAll(".party").forEach(p => {
+        p.classList.remove("selected");
+    });
+
+    element.classList.add("selected");
+
+    selectedVotes[type] = id;
+
+    localStorage.setItem("selectedVotes", JSON.stringify(selectedVotes));
+}
+
+
+// SUBMIT ALL VOTES
+async function submitVote() {
+
+    if (isSubmitting) return;
+
+    if (!selectedVotes.national || !selectedVotes.provincial || !selectedVotes.regional) {
+        alert("Please vote in ALL ballots");
+        return;
+    }
+
+    isSubmitting = true;
+
+    try {
+
+        await submitSingleVote(selectedVotes.national, "National");
+        await submitSingleVote(selectedVotes.provincial, "Provincial");
+        await submitSingleVote(selectedVotes.regional, "Regional");
+
+        showToast("Voting completed ✔");
+
+        localStorage.removeItem("selectedVotes");
+
+        lockUI();
+
+        setTimeout(() => {
+            window.location.href = "voter_dashboard.html";
+        }, 1500);
+
+    } catch (err) {
+        console.log(err);
+        showToast("Voting failed ❌");
+    } finally {
+        isSubmitting = false;
+    }
+}
+
+
+// SINGLE VOTE CALL
+async function submitSingleVote(partyId, electionType) {
+
+    const map = {
+        "National": 4,
+        "Provincial": 2,
+        "Regional": 1
+    };
+
+    const res = await fetch("https://localhost:7245/api/Voting/cast-vote", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            partyId: partyId,
+            electionType: map[electionType]
+        })
+    });
+
+    const data = await res.json().catch(() => null);
+
+   
+    // HANDLE ERRORS CLEANLY
+    if (!res.ok) {
+
+        const msg = data?.message || "";
+
+        if (msg.includes("already voted")) {
+            showToast(`✔ Already voted in ${electionType}`);
+            return;
+        }
+
+        if (msg.includes("not available")) {
+            showToast(`⚠ ${electionType} ballot not available`);
+            return;
+        }
+
+        throw new Error(msg || "Voting failed");
+    }
+
+    showToast(`${electionType} vote saved ✔`);
+}
+
+
+// LOCK UI AFTER VOTE
+function lockUI() {
+
+    document.querySelectorAll(".party").forEach(p => {
+        p.style.pointerEvents = "none";
+        p.style.opacity = "0.5";
+    });
+}
+
+
+// TOAST MESSAGE
+function showToast(message) {
+
+    const toast = document.createElement("div");
+
+    toast.innerText = message;
+
+    toast.style.position = "fixed";
+    toast.style.bottom = "20px";
+    toast.style.right = "20px";
+    toast.style.background = "#111827";
+    toast.style.color = "#fff";
+    toast.style.padding = "12px 16px";
+    toast.style.borderRadius = "8px";
+    toast.style.zIndex = "9999";
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+}
+
+
+// INIT
+loadParties();
+
+</script>
+
+</body>
+</html>

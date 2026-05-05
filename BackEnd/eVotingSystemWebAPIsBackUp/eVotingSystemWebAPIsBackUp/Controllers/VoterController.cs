@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace eVotingSystemWebAPIsBackUp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Voter")]
     public class VoterController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -82,7 +84,6 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "Voter")]
         public async Task<IActionResult> UpdateVoter(UpdateVoterDTO reg)
         {
             var person = await _homeAffairsDbContext.Persons
@@ -108,7 +109,6 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
         
         [HttpPost("login")]
-        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginDTO login)
         {
             if (string.IsNullOrEmpty(login.IdNo) || string.IsNullOrEmpty(login.Password))
@@ -163,11 +163,10 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             return Unauthorized("Invalid credentials.");
         }
 
-        //Documents Status
         [HttpGet("my-status")]
         public async Task<IActionResult> GetMyStatus()
         {
-            var idNo = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var idNo = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(idNo))
                 return Unauthorized();
@@ -176,11 +175,20 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 .Where(x => x.IdNo == idNo)
                 .Select(x => new
                 {
-                    x.ElectionType,
-                    x.IsApproved,
-                    x.AdminComment
+                    isApproved = x.IsApproved,
+                    electionType = x.ElectionType,
+                    adminComment = x.AdminComment
                 })
-                .ToListAsync();
+                .FirstOrDefaultAsync();
+
+            if (data == null)
+            {
+                return Ok(new
+                {
+                    isApproved = false,
+                    electionType = (ElectionType?)null
+                });
+            }
 
             return Ok(data);
         }

@@ -8,12 +8,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ================= SERVICES =================
+//  SERVICES 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ================= DB =================
+//  DB 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("EvotingConnection"),
@@ -28,7 +28,7 @@ builder.Services.AddDbContext<HomeAffairsDbContext>(options =>
     )
 );
 
-// ================= JWT =================
+//  JWT 
 builder.Services.AddScoped<JwtService>();
 
 var jwtKey = builder.Configuration["Jwt:Key"];
@@ -44,28 +44,31 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
+
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(jwtKey)
-        )
+        ),
+
+        
+        RoleClaimType = System.Security.Claims.ClaimTypes.Role,
+        NameClaimType = System.Security.Claims.ClaimTypes.NameIdentifier
     };
 });
 
-// ================= FILE SERVICE =================
+//  FILE SERVICE 
 builder.Services.AddScoped<FileStorageService>();
 
 var app = builder.Build();
 
-// ================= PIPELINE =================
+//  PIPELINE 
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-// ================= IMPORTANT FIX =================
-// ENSURE uploads folder exists BEFORE static files
 var uploadsPath = Path.Combine(builder.Environment.ContentRootPath, "uploads");
 
 if (!Directory.Exists(uploadsPath))

@@ -1,9 +1,10 @@
 ﻿namespace eVotingSystemWebAPIsBackUp.Models
 {
+    [Flags]
     public enum ElectionType
     {
-        Provincial,
-        National,
-        Regional
+        Regional = 1,
+        Provincial = 2,
+        National = 4
     }
 }

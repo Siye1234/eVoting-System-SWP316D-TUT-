@@ -107,6 +107,70 @@ th {
     display: flex;
     justify-content: space-between;
 }
+
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
 </style>
 </head>
 
@@ -153,30 +217,27 @@ th {
 
         <button class="green" onclick="openAddModal()">Add Party</button>
         <button class="red" onclick="openRemoveModal()">Remove Party</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
 </div>
 
-<!-- ===================== -->
-<!-- DOCUMENT VIEW MODAL -->
-<!-- ===================== -->
-<div class="modal" id="docModal">
-    <div class="modal-content">
-        <h3>Proof of Address</h3>
-        <div id="docViewer"></div>
-        <button class="red" onclick="closeDoc()">Close</button>
-    </div>
-</div>
 
 <!-- ADD PARTY MODAL -->
 <div class="modal" id="addModal">
     <div class="modal-content">
         <h3>Add Party</h3>
-        <input type="text" id="newParty" style="width:100%;padding:10px;margin-top:10px;">
+
+        <input type="text" id="newParty" placeholder="Party Name" style="width:100%;padding:10px;margin-top:10px;">
+        
+        <input type="file" id="partyLogo" accept="image/*" style="width:100%;padding:10px;margin-top:10px;">
+
         <button class="green" onclick="addParty()">Save</button>
         <button class="red" onclick="closeModals()">Close</button>
     </div>
 </div>
+
+
 
 <!-- REMOVE PARTY MODAL -->
 <div class="modal" id="removeModal">
@@ -187,18 +248,38 @@ th {
     </div>
 </div>
 
+<!-- DOCUMENT MODAL -->
+<div class="modal" id="docModal">
+    <div class="modal-content">
+        <h3>Proof of Address</h3>
+
+        <div id="docViewer"></div>
+
+        <button class="red" onclick="closeDoc()">Close</button>
+    </div>
+</div>
+
 <script>
 
 let users = [];
 
-// ================= TOKEN =================
+// =========================
+// TOKEN
+// =========================
 function getToken() {
     return localStorage.getItem("token");
 }
 
+// =========================
+// LOAD USERS (PENDING)
+// =========================
 async function loadUsers() {
     try {
-        const res = await fetch("https://localhost:7245/api/Admin/registrations/pending");
+        const res = await fetch("https://localhost:7245/api/Admin/registrations/pending", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
 
         if (!res.ok) {
             console.log(await res.text());
@@ -207,7 +288,7 @@ async function loadUsers() {
 
         users = await res.json();
 
-        console.log("LOADED USERS:", users); // 🔥 debug check
+        console.log("LOADED USERS:", users);
 
         renderTable();
 
@@ -216,7 +297,9 @@ async function loadUsers() {
     }
 }
 
-// ================= RENDER TABLE =================
+// =========================
+// RENDER TABLE (FIXED)
+// =========================
 function renderTable() {
 
     const table = document.getElementById("userTable");
@@ -224,21 +307,20 @@ function renderTable() {
 
     users.forEach((u, index) => {
 
-        let color =
-            u.documentStatus === "Approved" ? "#22c55e" :
-            u.documentStatus === "Rejected" ? "#ef4444" : "#facc15";
+        const statusText = u.isApproved ? "Approved ✔" : "Pending ⏳";
+        const color = u.isApproved ? "#22c55e" : "#facc15";
 
         table.innerHTML += `
             <tr>
                 <td>${u.idNo}</td>
                 <td>${u.residentialAddress || "N/A"}</td>
+
                 <td>
                     <button class="blue" onclick="viewDoc(${index})">View</button>
                 </td>
 
-                <td style="color:${color}">
-                    ${u.documentStatus || "Pending"}
-                    ${u.documentRejectionReason ? `<br><small>${u.documentRejectionReason}</small>` : ""}
+                <td style="color:${color}; font-weight:bold;">
+                    ${statusText}
                 </td>
 
                 <td>
@@ -249,12 +331,13 @@ function renderTable() {
         `;
     });
 }
-//VIEW DOCUMENT
+
+// =========================
+// VIEW DOCUMENT
+// =========================
 function viewDoc(i) {
 
     const file = users[i].proofOfAddressPath;
-
-    const fullUrl = `https://localhost:7245${file}`; // 🔥 IMPORTANT FIX
 
     const viewer = document.getElementById("docViewer");
 
@@ -263,12 +346,13 @@ function viewDoc(i) {
         return;
     }
 
+    const fullUrl = `https://localhost:7245${file}`;
+
     if (file.endsWith(".pdf")) {
         viewer.innerHTML = `
             <iframe src="${fullUrl}" width="100%" height="400px"></iframe>
         `;
-    }
-    else {
+    } else {
         viewer.innerHTML = `
             <img src="${fullUrl}" style="width:100%;height:400px;object-fit:contain;">
         `;
@@ -277,20 +361,22 @@ function viewDoc(i) {
     document.getElementById("docModal").style.display = "flex";
 }
 
+// =========================
+// CLOSE DOC MODAL
+// =========================
 function closeDoc() {
     document.getElementById("docModal").style.display = "none";
     document.getElementById("docViewer").innerHTML = "";
 }
 
-// APPROVE 
+// =========================
+// APPROVE USER
+// =========================
 async function approve(index) {
 
     const user = users[index];
 
-    let commentInput = prompt("Approval comment (optional):");
-
-    // clean handling of cancel / empty input
-    const comment = null
+    const comment = prompt("Approval comment (optional):");
 
     try {
         const res = await fetch("https://localhost:7245/api/Admin/approve", {
@@ -301,7 +387,7 @@ async function approve(index) {
             },
             body: JSON.stringify({
                 idNo: user.idNo,
-                comment: comment
+                comment: comment || null
             })
         });
 
@@ -321,18 +407,20 @@ async function approve(index) {
     }
 }
 
-//REJECT 
+// =========================
+// REJECT USER
+// =========================
 async function reject(index) {
 
     const user = users[index];
 
-    
-
     const comment = prompt("Enter rejection reason:");
+
     if (!comment || comment.trim() === "") {
         alert("Reason required");
         return;
     }
+
     try {
         const res = await fetch("https://localhost:7245/api/Admin/reject", {
             method: "POST",
@@ -362,7 +450,9 @@ async function reject(index) {
     }
 }
 
-// ================= MOCK ELECTION COUNTDOWN =================
+// =========================
+// ELECTION COUNTDOWN
+// =========================
 function loadElectionDate() {
 
     const now = new Date();
@@ -371,8 +461,7 @@ function loadElectionDate() {
 
     setInterval(() => {
 
-        const currentTime = new Date();
-        const diff = electionDate - currentTime;
+        const diff = electionDate - new Date();
 
         if (diff <= 0) {
             document.getElementById("countdownText").innerText = "Election Started 🟢";
@@ -390,7 +479,9 @@ function loadElectionDate() {
     }, 1000);
 }
 
-// ================= REGISTERED VOTERS (DB) =================
+// =========================
+// VOTER COUNT
+// =========================
 async function loadVoterCount() {
 
     try {
@@ -400,24 +491,113 @@ async function loadVoterCount() {
             }
         });
 
-        if (!res.ok) {
-            document.getElementById("voterCount").innerText = "Error";
-            return;
-        }
-
         const data = await res.json();
         document.getElementById("voterCount").innerText = data.count;
 
     } catch (err) {
-        console.log("Count error:", err);
+        console.log(err);
         document.getElementById("voterCount").innerText = "Error";
     }
 }
 
-// ================= INIT =================
+// =========================
+// ADD PARTY
+// =========================
+async function addParty() {
+
+    const name = document.getElementById("newParty").value.trim();
+    const file = document.getElementById("partyLogo").files[0];
+
+    if (!name || !file) {
+        alert("All fields required");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("PartyName", name);
+    formData.append("Logo", file);
+
+    const res = await fetch("https://localhost:7245/api/Admin/create-party", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + getToken()
+        },
+        body: formData
+    });
+
+    if (!res.ok) {
+        alert(await res.text());
+        return;
+    }
+
+    alert("Party added successfully");
+
+    document.getElementById("newParty").value = "";
+    document.getElementById("partyLogo").value = "";
+}
+
+// MODALS
+function openAddModal() {
+    document.getElementById("addModal").style.display = "flex";
+}
+
+function openRemoveModal() {
+    document.getElementById("removeModal").style.display = "flex";
+}
+
+function closeModals() {
+    document.getElementById("addModal").style.display = "none";
+    document.getElementById("removeModal").style.display = "none";
+}
+
+
+// LOAD PARTIES (FIXED DUPLICATE ISSUE)
+async function loadParties() {
+    try {
+        const res = await fetch("https://localhost:7245/api/SuperAdmin/get-parties", {
+            headers: {
+                "Authorization": "Bearer " + getToken()
+            }
+        });
+
+        const data = await res.json();
+
+        let html = "";
+
+        data.forEach(p => {
+
+            const status =
+                p.isApproved ? "Approved ✔" :
+                p.isRejected ? "Rejected ❌" :
+                "Pending ⏳";
+
+            html += `
+                <div class="party-item">
+                    <span>${p.partyName} - ${status}</span>
+                </div>
+            `;
+        });
+
+        document.getElementById("partyList").innerHTML = html;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+// LOGOUT
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+
+// INIT
 loadUsers();
 loadElectionDate();
 loadVoterCount();
+loadParties();
 
 </script>
 
