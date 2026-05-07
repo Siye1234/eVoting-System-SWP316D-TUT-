@@ -134,7 +134,7 @@ th {
 <body>
 
 <header>
-    <h2>Voter Dashboard</h2>
+    <h2 id="userHeader">Voter Dashboard</h2>
 
     <div class="header-actions">
 
@@ -160,6 +160,17 @@ th {
             Vote Now
         </button>
     </div>
+
+    <!-- ELECTION RESULTS -->
+<div class="card">
+    <h3>Election Results</h3>
+
+    <button class="btn btn-blue" onclick="loadElectionResults()">
+        View Election Results
+    </button>
+
+    <div id="resultsContainer" style="margin-top:15px;"></div>
+</div>
 
 </div>
 
@@ -206,6 +217,7 @@ th {
 
 let isApproved = false; 
 
+
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
 
@@ -213,13 +225,14 @@ function getToken() {
     return localStorage.getItem("token");
 }
 
-
 if (!token || role !== "Voter") {
     alert("Access denied. Please login as Voter.");
     window.location.href = "login.html";
 }
 
+// ===============================
 // ELECTION DATE
+// ===============================
 const electionDate = new Date();
 electionDate.setMonth(electionDate.getMonth() + 11);
 
@@ -240,41 +253,114 @@ function registerToVote() {
     window.location.href = "voting_registration.html";
 }
 
-//vote now
+// VOTE NOW
 function goToVote() {
     window.location.href = "ballot.html";
 }
 
+// ===============================
+// LOAD VOTER PROFILE (NEW)
+// ===============================
+async function loadVoterProfile() {
 
+    try {
+        const res = await fetch("https://localhost:7245/api/Voter/me", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const user = await res.json();
+
+        let fullName = "";
+
+        if (user.middleName) {
+            fullName = `${user.firstName} ${user.middleName} ${user.lastName}`;
+        } else {
+            fullName = `${user.firstName} ${user.lastName}`;
+        }
+
+        document.getElementById("userHeader").innerText = fullName;
+
+    } catch (err) {
+        console.log("Profile load error:", err);
+        document.getElementById("userHeader").innerText = "Voter Dashboard";
+    }
+}
+
+// ===============================
+// ELECTION TYPE MAPPING
+// ===============================
+function getElectionTypeName(value) {
+    const map = {
+        1: "Regional",
+        2: "Provincial",
+        4: "National"
+    };
+    return map[value] || "Unknown";
+}
+
+// ===============================
 // HISTORY MODAL
-function openHistory() {
+// ===============================
+async function openHistory() {
 
     document.getElementById("modalTitle").innerText = "My Voting History";
 
     document.getElementById("statusContainer").style.display = "none";
     document.getElementById("historyContainer").style.display = "block";
 
-    const history = [
-        "2024-05-29",
-        "2019-05-08",
-        "2014-05-07",
-        "2009-04-22"
-    ];
-
     const container = document.getElementById("historyContainer");
-    container.innerHTML = "";
+    container.innerHTML = "Loading...";
 
-    history.forEach(date => {
-        const div = document.createElement("div");
-        div.className = "history-item";
-        div.innerText = date;
-        container.appendChild(div);
-    });
+    try {
+        const res = await fetch("https://localhost:7245/api/Voter/my-history", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const history = await res.json();
+
+        container.innerHTML = "";
+
+        if (!history || history.length === 0) {
+            container.innerHTML = "<p>No voting history found.</p>";
+            return;
+        }
+
+        history.forEach(item => {
+
+            const div = document.createElement("div");
+            div.className = "history-item";
+
+            const date = new Date(item.dateVoted);
+
+            const formattedTime = date.toLocaleTimeString();
+            const formattedDate = date.toLocaleDateString();
+
+            const electionName = getElectionTypeName(item.electionType);
+
+            div.innerHTML = `
+                <p><b>Election:</b> ${electionName}</p>
+                <p><b>Date:</b> ${formattedDate}</p>
+                <p><b>Time:</b> ${formattedTime}</p>
+            `;
+
+            container.appendChild(div);
+        });
+
+    } catch (err) {
+        container.innerHTML = "<p>Error loading history.</p>";
+        console.log("History API error:", err);
+    }
 
     document.getElementById("infoModal").style.display = "flex";
 }
 
+// ===============================
 // STATUS MODAL
+// ===============================
 function openStatus() {
 
     document.getElementById("modalTitle").innerText = "My Voting Status";
@@ -287,7 +373,9 @@ function openStatus() {
     document.getElementById("infoModal").style.display = "flex";
 }
 
-
+// ===============================
+// LOAD STATUS
+// ===============================
 async function loadMyStatus() {
 
     try {
@@ -302,60 +390,171 @@ async function loadMyStatus() {
 
         if (!record) return;
 
-        // ✅ get value from database
-        isApproved = record.isApproved;
+        let statusValue = record.isApproved;
+
+        if (statusValue === true || statusValue === "true" || statusValue === 1) {
+            isApproved = true;
+        } 
+        else if (statusValue === false || statusValue === "false" || statusValue === 0) {
+            isApproved = false;
+        } 
+        else {
+            isApproved = null;
+        }
+
+        let statusText = "";
+
+        if (isApproved === true) {
+            statusText = "Approved ✔";
+        } else if (isApproved === false) {
+            statusText = "Rejected ❌";
+        } else {
+            statusText = "Pending ⏳";
+        }
 
         document.getElementById("statusContainer").innerHTML = `
             <div style="padding:10px;background:#1f2937;border-radius:8px;">
-                <p><b>Status:</b> ${
-                    record.isApproved === true ? "Approved ✔" :
-                    record.isApproved === false ? "Rejected ❌" :
-                    "Pending ⏳"
-                }</p>
+                <p><b>Status:</b> ${statusText}</p>
                 <p><b>Comment:</b> ${record.adminComment ?? "No comment"}</p>
             </div>
         `;
 
-        checkVotingAvailability(); 
-        console.log("Record:", record);
-        console.log("isApproved:", record.isApproved);
+        checkVotingPeriod();
 
     } catch (err) {
         console.log("API ERROR:", err);
     }
 }
 
-// SHOW OR HIDE VOTE BUTTON
+// ===============================
+// SHOW / HIDE VOTE BUTTON
+// ===============================
 function checkVotingAvailability() {
+
     const voteBtn = document.getElementById("voteBtn");
+    if (!voteBtn) return;
 
-    if (!voteBtn) {
-        console.log("Vote button not found");
-        return;
-    }
+    const shouldShow = (isApproved === true);
 
-    if (isApproved === true) {
-        voteBtn.style.display = "inline-block";
-    } else {
-        voteBtn.style.display = "none";
+    voteBtn.style.display = shouldShow ? "inline-block" : "none";
+}
+async function checkVotingPeriod() {
+
+    try {
+
+        const res = await fetch("https://localhost:7245/api/Voting/status");
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        const startDate = new Date(data.startDate);
+        const endDate = new Date(data.endDate);
+        const now = new Date();
+
+        const voteBtn = document.getElementById("voteBtn");
+        if (!voteBtn) return;
+
+        const isOpen = now >= startDate && now <= endDate;
+
+        const shouldShow = (isApproved === true && isOpen);
+
+        voteBtn.style.display = shouldShow ? "inline-block" : "none";
+
+    } catch (err) {
+        console.log("Voting status API error:", err);
     }
 }
 
-//CLOSE MODAL
+async function loadElectionResults() {
+
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "Loading results...";
+
+    try {
+
+        const res = await fetch("https://localhost:7245/api/Voting/election-results");
+
+        if (!res.ok) {
+            container.innerHTML = "Failed to load results";
+            return;
+        }
+
+        const data = await res.json();
+
+        console.log("RESULTS API:", data);
+
+        // =========================
+        // NOT PUBLISHED YET
+        // =========================
+        if (!data.isPublished) {
+            container.innerHTML = `
+                <div style="padding:10px;background:#ef4444;color:white;border-radius:8px;">
+                    ${data.message}
+                </div>
+            `;
+            return;
+        }
+
+        // =========================
+        // DISPLAY RESULTS
+        // =========================
+        const r = data.data;
+
+        container.innerHTML = `
+            <h3>🏆 Election Results</h3>
+
+            <div class="card">
+                <h4>National</h4>
+                <p><b>Winner:</b> ${r.national.partyName}</p>
+                <p><b>Votes:</b> ${r.national.votes}</p>
+            </div>
+
+            <div class="card">
+                <h4>Provincial</h4>
+                <p><b>Winner:</b> ${r.provincial.partyName}</p>
+                <p><b>Votes:</b> ${r.provincial.votes}</p>
+            </div>
+
+            <div class="card">
+                <h4>Regional</h4>
+                <p><b>Winner:</b> ${r.regional.partyName}</p>
+                <p><b>Votes:</b> ${r.regional.votes}</p>
+            </div>
+        `;
+
+    } catch (err) {
+        console.log(err);
+        container.innerHTML = "Error loading results";
+    }
+}
+// ===============================
+// CLOSE MODAL
+// ===============================
 function closeModal() {
     document.getElementById("infoModal").style.display = "none";
 }
 
-//LOGOUT
+// ===============================
+// LOGOUT
+// ===============================
 function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
 
-// RUN ON PAGE LOAD
+// ===============================
+// ON PAGE LOAD
+// ===============================
 window.onload = function () {
     updateUI();
-    loadMyStatus(); // 🔥 THIS makes button appear automatically
+    loadMyStatus();
+    loadVoterProfile();
+
+    checkVotingPeriod(); // 🔥 ADD THIS
 };
 
 </script>

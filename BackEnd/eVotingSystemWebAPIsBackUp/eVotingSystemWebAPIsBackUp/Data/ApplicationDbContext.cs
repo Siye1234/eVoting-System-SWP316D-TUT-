@@ -15,6 +15,7 @@ namespace eVotingSystemWebAPIsBackUp.Data
         public DbSet<PoliticalParty> PoliticalParties { get; set; }
         public DbSet<Election> Elections { get; set; }
         public DbSet<Vote> Votes { get; set; }
+        public DbSet<ElectionPublishState> ElectionPublishStates { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

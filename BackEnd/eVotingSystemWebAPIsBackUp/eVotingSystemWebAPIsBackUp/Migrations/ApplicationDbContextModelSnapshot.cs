@@ -76,6 +76,23 @@ namespace eVotingSystemWebAPIsBackUp.Migrations
                     b.ToTable("Elections");
                 });
 
+            modelBuilder.Entity("eVotingSystemWebAPIsBackUp.Models.ElectionPublishState", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("PublishedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ElectionPublishStates");
+                });
+
             modelBuilder.Entity("eVotingSystemWebAPIsBackUp.Models.PoliticalParty", b =>
                 {
                     b.Property<int>("Id")
@@ -252,7 +269,6 @@ namespace eVotingSystemWebAPIsBackUp.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ResidentialAddress")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

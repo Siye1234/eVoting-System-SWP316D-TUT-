@@ -192,5 +192,50 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
             return Ok(data);
         }
+
+        //My voting history
+        [HttpGet("my-history")]
+        [Authorize(Roles = "Voter")]
+        public async Task<IActionResult> GetMyHistory()
+        {
+            var voterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var history = await _context.Votes
+                .Where(v => v.VoterId == voterId) // ✅ FILTER BY VOTER
+                .Select(v => new
+                {
+                    electionType = v.ElectionType,
+                    dateVoted = v.VoteDate
+                })
+                .ToListAsync();
+
+            return Ok(history);
+        }
+
+        //Personal info for UI Dashboard
+        [HttpGet("me")]
+        [Authorize(Roles = "Voter")]
+        public async Task<IActionResult> GetMyProfile()
+        {
+            var idNo = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(idNo))
+                return Unauthorized();
+
+            var voter = await _context.Voters
+                .FirstOrDefaultAsync(v => v.IdNo == idNo);
+
+            if (voter == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                firstName = voter.FirstName,
+                middleName = voter.MiddleName,
+                lastName = voter.LastName
+            });
+        }
+
+       
     }
 }

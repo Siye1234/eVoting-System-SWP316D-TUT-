@@ -263,14 +263,13 @@ function captureFace() {
 async function submitRegistration() {
 
     const token = localStorage.getItem("token");
-    const isProv = document.getElementById("provCheck").checked;
+    const isAll = document.getElementById("provCheck").checked;
 
     if (!token) {
         alert("Session expired. Please login again.");
         return;
     }
 
-    // Face is required (based on your system rule)
     if (!window.capturedBlob) {
         alert("Face capture is required");
         return;
@@ -279,48 +278,48 @@ async function submitRegistration() {
     let address = "";
     let proofFile = null;
 
-    if (isProv) {
+    if (isAll) {
 
         address = document.getElementById("address").value;
 
         if (!address) {
-            alert("Residential address is required for Provincial registration");
+            alert("Residential address is required");
             return;
         }
 
         proofFile = document.getElementById("proofFile").files[0];
 
         if (!proofFile) {
-            alert("Proof of address is required for Provincial registration");
+            alert("Proof of address is required");
             return;
         }
     }
 
-    // ================= BUILD FORM DATA =================
-    const formData = new FormData();
-
-    formData.append("ElectionType", isProv ? 2 : 1);
-    formData.append("ResidentialAddress", address);
-
-    // Attach FACE always (if backend uses it)
-    const faceFile = new File([window.capturedBlob], "face.png", {
-        type: "image/png"
-    });
-
-    formData.append("FaceImage", faceFile);
-
-    // Only attach proof if provincial
-    if (isProv) {
-        formData.append("ProofFile", proofFile);
-    }
+    // ✔ SINGLE election type only (THIS IS THE FIX)
+    const electionType = isAll ? 2 : 4; 
+    // 2 = Provincial + Regional, 4 = National only
 
     try {
+
+        const formData = new FormData();
+
+        formData.append("ElectionType", electionType);
+        formData.append("ResidentialAddress", address);
+
+        const faceFile = new File([window.capturedBlob], "face.png", {
+            type: "image/png"
+        });
+
+        formData.append("FaceImage", faceFile);
+
+        if (isAll) {
+            formData.append("ProofFile", proofFile);
+        }
 
         const res = await fetch("https://localhost:7245/api/VotingRegistration/register", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`
-                // ❌ DO NOT set Content-Type
             },
             body: formData
         });
@@ -334,7 +333,6 @@ async function submitRegistration() {
         }
 
         alert("Voting registration successful ✔");
-
         window.location.href = "voter.html";
 
     } catch (err) {

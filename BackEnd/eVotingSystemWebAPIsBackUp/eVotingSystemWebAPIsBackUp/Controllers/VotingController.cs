@@ -23,6 +23,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
         // CHECK IF ELECTION IS OPEN        
         [HttpGet("status")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetElectionStatus()
         {
             var election = await _context.Elections.FirstOrDefaultAsync();
@@ -127,5 +128,68 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             return Ok(new { message = "Vote cast successfully" });
         }
 
+        private async Task<object> GetWinner(ElectionType type)
+        {
+            var winner = await _context.Votes
+                .Where(v => v.ElectionType == type)
+                .GroupBy(v => v.PartyId)
+                .Select(g => new
+                {
+                    PartyId = g.Key,
+                    Votes = g.Count()
+                })
+                .OrderByDescending(x => x.Votes)
+                .FirstOrDefaultAsync();
+
+            if (winner == null)
+            {
+                return new
+                {
+                    partyName = "No votes",
+                    votes = 0
+                };
+            }
+
+            var party = await _context.PoliticalParties
+                .FirstOrDefaultAsync(p => p.Id == winner.PartyId);
+
+            return new
+            {
+                partyName = party?.Name ?? "Unknown",
+                votes = winner.Votes
+            };
+        }
+
+        // ===============================
+        // GET RESULTS (ONLY IF PUBLISHED)
+        // ===============================
+        [HttpGet("election-results")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPublishedResults()
+        {
+            var published = await _context.ElectionPublishStates.FirstOrDefaultAsync();
+
+            if (published == null || published.IsPublished == false)
+            {
+                return Ok(new
+                {
+                    isPublished = false,
+                    message = "Results not published yet"
+                });
+            }
+
+            var result = new
+            {
+                isPublished = true,
+                data = new
+                {
+                    national = await GetWinner(ElectionType.National),
+                    provincial = await GetWinner(ElectionType.Provincial),
+                    regional = await GetWinner(ElectionType.Regional)
+                }
+            };
+
+            return Ok(result);
+        }
     }
 }

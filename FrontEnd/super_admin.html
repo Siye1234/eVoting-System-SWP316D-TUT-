@@ -208,6 +208,7 @@ footer p {
             <button onclick="setElection()">Set Election</button>
         </div>
 
+
     </div>
 
     <!-- PARTIES -->
@@ -216,6 +217,22 @@ footer p {
         <button onclick="loadParties()">Refresh</button>
         <div id="parties"></div>
     </div>
+
+    <div class="card">
+    <h2>Election Results</h2>
+    <button onclick="loadElectionResults()">Show Election Results</button>
+
+    <div id="resultsContainer" style="margin-top:15px;"></div>
+</div>
+<div class="card">
+    <h2>Publish Results</h2>
+
+    <button onclick="publishResults()" style="background:#16a34a;">
+        Publish Election Results
+    </button>
+
+    <p id="publishStatus" style="margin-top:10px;"></p>
+</div>
 
 </div>
 
@@ -399,6 +416,117 @@ async function reject(id) {
 
     await loadParties();
 }
+
+// ===============================
+// LOAD ELECTION RESULTS
+// ===============================
+async function loadElectionResults() {
+
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "Loading results...";
+
+    try {
+        const res = await fetch("https://localhost:7245/api/SuperAdmin/election-results", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        console.log("RESULT STATUS:", res.status);
+
+        if (!res.ok) {
+            container.innerHTML = "Failed to load results";
+            console.log(await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        console.log("ELECTION RESULTS:", data);
+
+        renderResults(data);
+
+    } catch (err) {
+        console.log("RESULT ERROR:", err);
+        container.innerHTML = "Error loading results";
+    }
+}
+
+// ===============================
+// RENDER RESULTS UI
+// ===============================
+function renderResults(data) {
+
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "";
+
+    function card(title, result) {
+
+        return `
+            <div style="
+                background:#f9fafb;
+                padding:12px;
+                border:1px solid #ddd;
+                border-radius:8px;
+                margin-bottom:10px;
+            ">
+                <h3>${title}</h3>
+                <p><b>Winner:</b> ${result.partyName}</p>
+                <p><b>Votes:</b> ${result.votes}</p>
+            </div>
+        `;
+    }
+
+    if (data.national) {
+        container.innerHTML += card("🏛 National Winner", data.national);
+    }
+
+    if (data.provincial) {
+        container.innerHTML += card("🏢 Provincial Winner", data.provincial);
+    }
+
+    if (data.regional) {
+        container.innerHTML += card("📍 Regional Winner", data.regional);
+    }
+}
+
+// ===============================
+// PUBLISH RESULTS
+// ===============================
+async function publishResults() {
+
+    const status = document.getElementById("publishStatus");
+    status.innerText = "Publishing results...";
+
+    try {
+        const res = await fetch("https://localhost:7245/api/SuperAdmin/publish-results", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        console.log("PUBLISH STATUS:", res.status);
+
+        if (!res.ok) {
+            const msg = await res.text();
+            console.log(msg);
+            status.innerText = "Failed to publish results";
+            return;
+        }
+
+        status.innerText = "Results published successfully ✔";
+
+        alert("Election results are now public");
+
+    } catch (err) {
+        console.log("PUBLISH ERROR:", err);
+        status.innerText = "Error publishing results";
+    }
+}
+
+</script>
 </script>
 
 </body>

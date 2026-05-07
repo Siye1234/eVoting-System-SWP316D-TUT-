@@ -11,10 +11,8 @@ namespace eVotingSystemWebAPIsBackUp.Models
 
         [Required]
         public ElectionType ElectionType { get; set; }
-                
-        [Required]
-        public string? ResidentialAddress { get; set; }                
-        public string? ProofOfAddressPath { get; set; }        
+        public string? ResidentialAddress { get; set; } =null;  
+        public string? ProofOfAddressPath { get; set; } = null;
         public string? FaceImagePath { get; set; }
         public decimal? FacialScanScore { get; set; }       
         public bool? AddressVerified { get; set; } = null;

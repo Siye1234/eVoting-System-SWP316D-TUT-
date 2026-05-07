@@ -164,9 +164,29 @@
   },
   {
     "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "GetElectionResults",
+    "RelativePath": "api/SuperAdmin/election-results",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
     "Method": "GetParties",
     "RelativePath": "api/SuperAdmin/get-parties",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
+    "Method": "PublishResults",
+    "RelativePath": "api/SuperAdmin/publish-results",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
@@ -243,6 +263,26 @@
   },
   {
     "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "GetMyProfile",
+    "RelativePath": "api/Voter/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
+    "Method": "GetMyHistory",
+    "RelativePath": "api/Voter/my-history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VoterController",
     "Method": "GetMyStatus",
     "RelativePath": "api/Voter/my-status",
     "HttpMethod": "GET",
@@ -291,6 +331,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.VotingController",
+    "Method": "GetPublishedResults",
+    "RelativePath": "api/Voting/election-results",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

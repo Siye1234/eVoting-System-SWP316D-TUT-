@@ -1,4 +1,5 @@
 ﻿using eVotingSystemWebAPIsBackUp.Data;
+using eVotingSystemWebAPIsBackUp.DTOs;
 using eVotingSystemWebAPIsBackUp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -178,6 +179,83 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             };
 
             return Ok(result);
+        }
+
+        // ===============================
+        // MAIN ENDPOINT
+        // ===============================
+        [HttpGet("election-results")]
+        public async Task<IActionResult> GetElectionResults()
+        {
+            var result = new ElectionResultsResponseDto
+            {
+                National = await GetWinnerByType(ElectionType.National),
+                Provincial = await GetWinnerByType(ElectionType.Provincial),
+                Regional = await GetWinnerByType(ElectionType.Regional)
+            };
+
+            return Ok(result);
+        }
+
+        // ===============================
+        // CORE WINNER LOGIC
+        // ===============================
+        private async Task<ElectionResultDto> GetWinnerByType(ElectionType electionType)
+        {
+            var winner = await _context.Votes
+                .Where(v => v.ElectionType == electionType)
+                .GroupBy(v => v.PartyId)
+                .Select(g => new
+                {
+                    PartyId = g.Key,
+                    TotalVotes = g.Count()
+                })
+                .OrderByDescending(x => x.TotalVotes)
+                .FirstOrDefaultAsync();
+
+            if (winner == null)
+            {
+                return new ElectionResultDto
+                {
+                    PartyName = "No votes yet",
+                    Votes = 0
+                };
+            }
+
+            var party = await _context.PoliticalParties
+                .FirstOrDefaultAsync(p => p.Id == winner.PartyId);
+
+            return new ElectionResultDto
+            {
+                PartyName = party?.Name ?? "Unknown",
+                Votes = winner.TotalVotes
+            };
+        }
+
+        [HttpPost("publish-results")]
+        public async Task<IActionResult> PublishResults()
+        {
+            var existing = await _context.ElectionPublishStates.FirstOrDefaultAsync();
+
+            if (existing == null)
+            {
+                existing = new ElectionPublishState
+                {
+                    IsPublished = true,
+                    PublishedAt = DateTime.UtcNow
+                };
+
+                _context.ElectionPublishStates.Add(existing);
+            }
+            else
+            {
+                existing.IsPublished = true;
+                existing.PublishedAt = DateTime.UtcNow;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Results published successfully" });
         }
     }
 }

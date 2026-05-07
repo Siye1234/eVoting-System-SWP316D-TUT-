@@ -345,6 +345,30 @@
         }
       }
     },
+    "/api/SuperAdmin/election-results": {
+      "get": {
+        "tags": [
+          "SuperAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SuperAdmin/publish-results": {
+      "post": {
+        "tags": [
+          "SuperAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Voter/register": {
       "post": {
         "tags": [
@@ -450,6 +474,30 @@
         }
       }
     },
+    "/api/Voter/my-history": {
+      "get": {
+        "tags": [
+          "Voter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Voter/me": {
+      "get": {
+        "tags": [
+          "Voter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Voting/status": {
       "get": {
         "tags": [
@@ -498,6 +546,18 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Voting/election-results": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
         "responses": {
           "200": {
             "description": "OK"
