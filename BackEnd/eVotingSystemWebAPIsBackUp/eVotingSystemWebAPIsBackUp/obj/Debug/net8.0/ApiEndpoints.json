@@ -121,6 +121,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.FaceController",
+    "Method": "Verify",
+    "RelativePath": "api/Face/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idNo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "liveImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "eVotingSystemWebAPIsBackUp.Controllers.SuperAdminController",
     "Method": "ApproveParty",
     "RelativePath": "api/SuperAdmin/approve-party/{id}",

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Face Verification</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+video, img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.start { background: #3b82f6; color: white; }
+.capture { background: #ef4444; color: white; }
+.verify { background: #22c55e; color: white; }
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#loading {
+    margin-top: 10px;
+    color: #fbbf24;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Face Verification</h2>
+
+<video id="video" autoplay></video>
+<img id="preview" style="display:none;">
+
+<button class="start" onclick="startCamera()">Start Camera</button>
+<button class="capture" onclick="captureFace()">Capture Face</button>
+<button class="verify" onclick="verifyFace()">Verify Face</button>
+
+<p id="loading">Verifying face... please wait ⏳</p>
+<p id="result"></p>
+
+</div>
+
+<script>
+
+let stream = null;
+let capturedBlob = null;
+
+// ================= START CAMERA =================
+function startCamera() {
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(s => {
+            stream = s;
+            document.getElementById("video").srcObject = stream;
+        })
+        .catch(() => alert("Camera blocked"));
+}
+
+// ================= CAPTURE FACE =================
+function captureFace() {
+
+    const video = document.getElementById("video");
+
+    if (!video.videoWidth) {
+        alert("Camera not ready");
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    canvas.getContext("2d").drawImage(video, 0, 0);
+
+    canvas.toBlob(blob => {
+
+        capturedBlob = blob;
+
+        document.getElementById("preview").src =
+            URL.createObjectURL(blob);
+
+        document.getElementById("preview").style.display = "block";
+
+        document.getElementById("result").innerText =
+            "Face captured ✔";
+
+        // STOP CAMERA
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+
+        video.srcObject = null;
+
+    }, "image/png");
+}
+
+// ================= VERIFY FACE =================
+async function verifyFace() {
+
+    console.log("=== VERIFY FACE START ===");
+
+    if (!capturedBlob) {
+        alert("Capture face first");
+        return;
+    }
+
+    const token = localStorage.getItem("token");
+    const idNo = localStorage.getItem("idNo");
+
+    console.log("TOKEN:", token);
+    console.log("IDNO:", idNo);
+    console.log("BLOB SIZE:", capturedBlob.size);
+
+    if (!token || !idNo) {
+        alert("Session missing. Please login again.");
+        return;
+    }
+
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("result").innerText = "";
+
+    const formData = new FormData();
+    formData.append("idNo", idNo);
+    formData.append("liveImage", capturedBlob, "face.jpg");
+
+    try {
+
+        console.log("🚀 Sending request...");
+
+        const res = await fetch("https://localhost:7245/api/Face/verify", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        console.log("Response status:", res.status);
+
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        document.getElementById("loading").style.display = "none";
+
+        // handle non-JSON safely
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.log("❌ Server did not return JSON");
+            alert(text);
+            return;
+        }
+
+        console.log("Parsed response:", data);
+
+        // ================= SUCCESS =================
+        if (data.match) {
+
+            console.log("✔ FACE MATCH SUCCESS");
+
+            // 🔐 STORE SESSION FOR BALLOT PAGE
+            sessionStorage.setItem("verified", "true");
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("idNo", idNo);
+
+            alert("Face verified ✔");
+
+            window.location.href = "ballot.html";
+        }
+
+        // ================= FAIL =================
+        else {
+            console.log("❌ FACE NOT MATCHED");
+            alert("Face not recognized ❌");
+        }
+
+    } catch (err) {
+
+        console.log("❌ ERROR CAUGHT:", err);
+
+        document.getElementById("loading").style.display = "none";
+
+        alert("Verification failed: " + err.message);
+    }
+
+    console.log("=== VERIFY FACE END ===");
+}
+
+</script>
+
+</body>
+</html>

@@ -214,6 +214,44 @@
         }
       }
     },
+    "/api/Face/verify": {
+      "post": {
+        "tags": [
+          "Face"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idNo": {
+                    "type": "string"
+                  },
+                  "liveImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "idNo": {
+                  "style": "form"
+                },
+                "liveImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/SuperAdmin/create-super-admin": {
       "post": {
         "tags": [

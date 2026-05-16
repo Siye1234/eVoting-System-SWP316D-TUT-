@@ -8,12 +8,16 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//  SERVICES 
+// =====================
+// SERVICES
+// =====================
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//  DB 
+// =====================
+// DATABASES
+// =====================
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("EvotingConnection"),
@@ -28,8 +32,25 @@ builder.Services.AddDbContext<HomeAffairsDbContext>(options =>
     )
 );
 
-//  JWT 
+// =====================
+// CORS (FIXED)
+// =====================
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+// =====================
+// JWT AUTH
+// =====================
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<FaceRecognitionService>();
 
 var jwtKey = builder.Configuration["Jwt:Key"];
 if (string.IsNullOrEmpty(jwtKey))
@@ -51,24 +72,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             Encoding.UTF8.GetBytes(jwtKey)
         ),
 
-        
         RoleClaimType = System.Security.Claims.ClaimTypes.Role,
         NameClaimType = System.Security.Claims.ClaimTypes.NameIdentifier
     };
 });
 
-//  FILE SERVICE 
+// =====================
+// FILE STORAGE
+// =====================
 builder.Services.AddScoped<FileStorageService>();
 
 var app = builder.Build();
 
-//  PIPELINE 
-
-app.UseSwagger();
-app.UseSwaggerUI();
+// =====================
+// PIPELINE
+// =====================
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
+// uploads folder setup
 var uploadsPath = Path.Combine(builder.Environment.ContentRootPath, "uploads");
 
 if (!Directory.Exists(uploadsPath))
@@ -76,19 +105,18 @@ if (!Directory.Exists(uploadsPath))
     Directory.CreateDirectory(uploadsPath);
 }
 
-app.UseStaticFiles();
-
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(uploadsPath),
     RequestPath = "/uploads"
 });
 
-app.UseCors(policy =>
-    policy.AllowAnyOrigin()
-          .AllowAnyMethod()
-          .AllowAnyHeader()
-);
+// =====================
+// ORDER IS IMPORTANT
+// =====================
+app.UseRouting();
+
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
