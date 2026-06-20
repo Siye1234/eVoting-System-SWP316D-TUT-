@@ -1,0 +1,15 @@
+wwwroot\voter.html
+wwwroot\uploads\897bb614-20f2-4cc0-acab-0f37b02cbb37.pdf
+wwwroot\uploads\4f2f7ad2-8fbd-4523-b734-f1a102122a47.pdf
+wwwroot\uploads\762dacd4-97ff-4241-82a6-364516672db6.pdf
+wwwroot\admin.html
+wwwroot\ballot.html
+wwwroot\botAI.html
+wwwroot\faceVerification.html
+wwwroot\index.html
+wwwroot\login.html
+wwwroot\register.html
+wwwroot\super_admin.html
+wwwroot\uploads\86da2c34-97b2-4b2b-a5ed-d8e274d438ca.pdf
+wwwroot\voter_dashboard.html
+wwwroot\voting_registration.html

@@ -24,14 +24,14 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             _context = context;
         }
 
-        // ================= REAL ID-BASED VERIFICATION =================
+        
         [HttpPost("verify")]
         public async Task<IActionResult> Verify([FromForm] string idNo, IFormFile liveImage)
         {
             if (string.IsNullOrWhiteSpace(idNo) || liveImage == null)
                 return BadRequest("ID number and image are required");
 
-            // 1. Get latest registration for this voter
+            
             var registration = await _context.VotingRegistrations
                 .Where(r => r.IdNo == idNo)
                 .OrderByDescending(r => r.RegisteredAt)
@@ -43,7 +43,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             if (string.IsNullOrWhiteSpace(registration.FaceImagePath))
                 return BadRequest("Face image path is missing in database");
 
-            // 2. Convert DB path -> real physical path
+           
             var rootPath = Directory.GetCurrentDirectory();
             var webRootPath = Path.Combine(rootPath, "wwwroot");
 
@@ -62,15 +62,15 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 });
             }
 
-            // 3. Load stored image
+            
             var storedFaceBytes = await System.IO.File.ReadAllBytesAsync(fullPath);
 
-            // 4. Load live image
+           
             using var ms = new MemoryStream();
             await liveImage.CopyToAsync(ms);
             var liveFaceBytes = ms.ToArray();
 
-            // 5. Compare faces (AWS Rekognition)
+            
             var similarity = await _faceService.CompareFaces(storedFaceBytes, liveFaceBytes);
 
             bool match = similarity.HasValue && similarity >= 80;
@@ -83,6 +83,58 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             });
         }
 
+        [HttpPost("check-duplicate-face")]
+        public async Task<IActionResult> CheckDuplicateFace(IFormFile liveImage)
+        {
+            if (liveImage == null)
+                return BadRequest("Face image is required");
+
+            using var ms = new MemoryStream();
+            await liveImage.CopyToAsync(ms);
+            var liveFaceBytes = ms.ToArray();
+
+            var registrations = await _context.VotingRegistrations
+                .Where(r => !string.IsNullOrEmpty(r.FaceImagePath))
+                .ToListAsync();
+
+            foreach (var registration in registrations)
+            {
+                var relativePath = registration.FaceImagePath
+                    .TrimStart('/')
+                    .Replace("/", Path.DirectorySeparatorChar.ToString());
+
+                var fullPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    relativePath);
+
+                if (!System.IO.File.Exists(fullPath))
+                    continue;
+
+                var storedFaceBytes =
+                    await System.IO.File.ReadAllBytesAsync(fullPath);
+
+                var similarity =
+                    await _faceService.CompareFaces(
+                        storedFaceBytes,
+                        liveFaceBytes);
+
+                if (similarity.HasValue && similarity >= 80)
+                {
+                    return Ok(new
+                    {
+                        duplicate = true,
+                        similarity,
+                        matchedVoter = registration.IdNo
+                    });
+                }
+            }
+
+            return Ok(new
+            {
+                duplicate = false
+            });
+        }
 
     }
 }

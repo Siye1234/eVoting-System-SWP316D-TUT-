@@ -161,8 +161,18 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
         [Authorize(Roles = "Voter,SuperAdmin,Admin")]
         public async Task<IActionResult> GetBallotParties()
         {
-            var parties = await _context.PoliticalParties
-                .Where(p => p.IsApproved && !p.IsRejected)
+            var national = await _context.PoliticalParties
+    .Where(p => p.IsApproved && !p.IsRejected && p.ElectionType.HasFlag(ElectionType.National))
+    .Select(p => new
+    {
+        id = p.Id,
+        partyName = p.Name,
+        logoUrl = p.LogoUrl
+    })
+    .ToListAsync();
+
+            var provincial = await _context.PoliticalParties
+                .Where(p => p.IsApproved && !p.IsRejected && p.ElectionType.HasFlag(ElectionType.Provincial))
                 .Select(p => new
                 {
                     id = p.Id,
@@ -171,35 +181,27 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 })
                 .ToListAsync();
 
-            var result = new
+            return Ok(new
             {
-                national = parties,
-                provincial = parties,
-                regional = parties
-            };
-
-            return Ok(result);
+                national,
+                provincial
+            });
         }
 
-        // ===============================
-        // MAIN ENDPOINT
-        // ===============================
+
         [HttpGet("election-results")]
         public async Task<IActionResult> GetElectionResults()
         {
             var result = new ElectionResultsResponseDto
             {
                 National = await GetWinnerByType(ElectionType.National),
-                Provincial = await GetWinnerByType(ElectionType.Provincial),
-                Regional = await GetWinnerByType(ElectionType.Regional)
+                Provincial = await GetWinnerByType(ElectionType.Provincial)
             };
 
             return Ok(result);
         }
 
-        // ===============================
-        // CORE WINNER LOGIC
-        // ===============================
+        
         private async Task<ElectionResultDto> GetWinnerByType(ElectionType electionType)
         {
             var winner = await _context.Votes
@@ -256,6 +258,22 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Results published successfully" });
+        }
+
+        [HttpGet("get-election-dates")]
+        [AllowAnonymous] 
+        public async Task<IActionResult> GetElectionDates()
+        {
+            var election = await _context.Elections.FirstOrDefaultAsync();
+
+            if (election == null)
+                return NotFound(new { message = "Election dates not set yet." });
+
+            return Ok(new
+            {
+                startDate = election.StartDate,
+                endDate = election.EndDate
+            });
         }
     }
 }

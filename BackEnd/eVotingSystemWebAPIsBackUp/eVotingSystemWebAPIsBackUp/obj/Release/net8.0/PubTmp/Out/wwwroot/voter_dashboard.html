@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vote Confirmation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #111827;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .success-box {
+            background: #dcfce7;
+            border: 1px solid #16a34a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .success-box h2 {
+            color: #15803d;
+            margin: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .winner {
+            font-size: 14px;
+            padding: 8px;
+            margin: 5px 0;
+            background: #f3f4f6;
+            border-radius: 5px;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    🗳️ Election Results & Confirmation
+</div>
+
+<div class="container">
+
+    <!-- SUCCESS MESSAGE -->
+    <div class="success-box">
+        <h2>✔ You have successfully cast your vote</h2>
+        <p>Thank you for participating in the democratic process</p>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="grid">
+
+        <!-- NATIONAL -->
+        <div class="card">
+            <h3>🇿🇦 National Election Winner</h3>
+            <div id="nationalResults"></div>
+        </div>
+
+        <!-- PROVINCIAL -->
+        <div class="card">
+            <h3>🏛️ Provincial Winner (Gauteng)</h3>
+            <div id="provincialResults"></div>
+        </div>
+
+        <!-- REGIONAL -->
+        <div class="card">
+            <h3>📍 Regional Winner</h3>
+            <div id="regionalResults"></div>
+        </div>
+
+    </div>
+
+    <div class="note">
+        Results are based on previously recorded election data.
+    </div>
+
+</div>
+
+<script>
+
+//  MOCK DATA 
+const results = {
+    national: [
+        { party: "AFRICAN NATIONAL CONGRESS (ANC)", votes: 1200000 },
+        { party: "EFF", votes: 900000 }
+    ],
+    provincial: [
+        { party: "ANC", votes: 500000 },
+        { party: "DA", votes: 300000 }
+    ],
+    regional: [
+        { party: "EFF", votes: 200000 },
+        { party: "ANC", votes: 180000 }
+    ]
+};
+
+// render helper
+function render(id, data) {
+    let html = "";
+
+    data.forEach(x => {
+        html += `
+            <div class="winner">
+                <b>${x.party}</b><br>
+                Votes: ${x.votes.toLocaleString()}
+            </div>
+        `;
+    });
+
+    document.getElementById(id).innerHTML = html;
+}
+
+// load results
+render("nationalResults", results.national);
+render("provincialResults", results.provincial);
+render("regionalResults", results.regional);
+
+</script>
+
+</body>
+</html>

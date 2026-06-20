@@ -21,7 +21,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
         }
 
 
-        // CHECK IF ELECTION IS OPEN        
+            
         [HttpGet("status")]
         [AllowAnonymous]
         public async Task<IActionResult> GetElectionStatus()
@@ -44,7 +44,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
         }
 
 
-        // GET BALLOT (PARTIES)        
+            
         [HttpGet("ballot")]
         public async Task<IActionResult> GetBallot()
         {
@@ -75,7 +75,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
         [Authorize(Roles = "Voter")]
         public async Task<IActionResult> CastVote([FromBody] VoteDTO dto)
         {
-            // 1. GET ACTIVE ELECTION (BASED ON DATES ONLY)
+            
             var now = DateTime.UtcNow;
 
             var election = await _context.Elections.FirstOrDefaultAsync();
@@ -86,13 +86,12 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             if (now < election.StartDate || now > election.EndDate)
                 return BadRequest(new { message = "Voting is closed" });
 
-            // 2. GET VOTER ID
             var idNo = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(idNo))
                 return Unauthorized();
 
-            // 3. PREVENT DOUBLE VOTING PER BALLOT TYPE
+           
             var alreadyVoted = await _context.Votes.AnyAsync(x =>
                 x.VoterId == idNo &&
                 x.ElectionType == dto.ElectionType);
@@ -100,20 +99,19 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             if (alreadyVoted)
                 return BadRequest(new { message = "You already voted for this ballot" });
 
-            // 4. VALIDATE PARTY EXISTS
+            
             var party = await _context.PoliticalParties
                 .FirstOrDefaultAsync(p => p.Id == dto.PartyId);
 
             if (party == null)
                 return NotFound(new { message = "Party not found" });
-
-            
-            if (!party.ElectionType.HasFlag(dto.ElectionType))
+                        
+           
+            if ((party.ElectionType & dto.ElectionType) != dto.ElectionType)
             {
                 return BadRequest(new { message = "This party is not available for this ballot" });
             }
 
-            // 6. SAVE VOTE
             var vote = new Vote
             {
                 PartyId = dto.PartyId,
@@ -131,7 +129,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
         private async Task<object> GetWinner(ElectionType type)
         {
             var winner = await _context.Votes
-                .Where(v => v.ElectionType == type)
+                .Where(v => (v.ElectionType & type) == type)
                 .GroupBy(v => v.PartyId)
                 .Select(g => new
                 {
@@ -160,9 +158,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             };
         }
 
-        // ===============================
-        // GET RESULTS (ONLY IF PUBLISHED)
-        // ===============================
+
         [HttpGet("election-results")]
         [AllowAnonymous]
         public async Task<IActionResult> GetPublishedResults()
@@ -184,8 +180,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 data = new
                 {
                     national = await GetWinner(ElectionType.National),
-                    provincial = await GetWinner(ElectionType.Provincial),
-                    regional = await GetWinner(ElectionType.Regional)
+                    provincial = await GetWinner(ElectionType.Provincial)
                 }
             };
 

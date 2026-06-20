@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eVoting System South Africa</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* BACKGROUND IMAGE */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.60);
+    z-index: 1;
+}
+
+/* CONTENT */
+.content {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header img {
+    width: 50px;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* BUTTONS */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    min-width: 140px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.login { background: #28a745; color: white; }
+.register { background: #007bff; color: white; }
+.about { background: #333; color: white; }
+
+/* FOOTER */
+footer {
+    background: rgba(0,0,0,0.85);
+    padding: 40px 20px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+footer h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+footer p {
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.6;
+    font-size: 15px;
+    opacity: 0.95;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 16px; }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%;
+    }
+}
+
+
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="content">
+
+<header>
+    <h2>eVoting System South Africa</h2>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg">
+</header>
+
+<section class="hero">
+    <h1>Secure Online Voting System</h1>
+    <p>Register, verify identity, and participate in national elections securely.</p>
+
+    <div class="btn-group">
+        <button class="btn login" onclick="goLogin()">Login</button>
+        <button class="btn register" onclick="goRegister()">Register</button>
+        <button class="btn about" onclick="scrollFooter()">More About Election</button>
+    </div>
+</section>
+
+<footer id="footer">
+
+    <h3>About Elections & Democracy in South Africa</h3>
+
+    <p>
+        South Africa has a complex history shaped by the apartheid era, where the majority of citizens
+        were excluded from democratic participation. Under apartheid, political rights and voting
+        were restricted based on race, leading to widespread inequality and international isolation.
+    </p>
+
+    <p style="margin-top:15px;">
+        In 1994, South Africa transitioned into a democratic state with its first fully inclusive
+        elections, marking the end of apartheid and the beginning of a new constitutional democracy.
+        Since then, elections have become a cornerstone of the country’s governance, ensuring that
+        all eligible citizens have the right to vote freely and fairly.
+    </p>
+
+    <p style="margin-top:15px;">
+        This system aims to modernize the democratic process by improving transparency, security,
+        and accessibility through digital registration and identity verification technologies.
+    </p>
+
+</footer>
+
+</div>
+
+<script>
+function goRegister() {
+    window.location.href = "register.html";
+}
+
+function goLogin() {
+    window.location.href = "login.html";
+}
+
+function scrollFooter() {
+    document.getElementById("footer").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

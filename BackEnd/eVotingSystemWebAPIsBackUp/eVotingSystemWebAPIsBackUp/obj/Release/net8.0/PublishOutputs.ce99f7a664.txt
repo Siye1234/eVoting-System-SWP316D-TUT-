@@ -4,6 +4,8 @@ C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBac
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\eVotingSystemWebAPIsBackUp.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\eVotingSystemWebAPIsBackUp.runtimeconfig.json
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\eVotingSystemWebAPIsBackUp.pdb
+C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\AWSSDK.Core.dll
+C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\AWSSDK.Rekognition.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\Azure.Core.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\PubTmp\Out\BouncyCastle.Cryptography.dll

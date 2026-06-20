@@ -12,17 +12,20 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
+        private readonly IWebHostEnvironment _env;
         private readonly ApplicationDbContext _context;
 
-        public AdminController(ApplicationDbContext context)
+        public AdminController(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // CREATE ADMIN
-        
+
         [HttpPost("create-admin")]
         [AllowAnonymous]
+
         public async Task<IActionResult> CreateAdmin([FromBody] CreateAdminDTO dto)
         {
             if (dto == null)
@@ -145,15 +148,16 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             return Ok(new { count });
         }
 
-        //add political party
+        //add political party        
         [HttpPost("create-party")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateParty([FromForm] CreatePartyDTO dto)
         {
             if (string.IsNullOrEmpty(dto.PartyName))
                 return BadRequest("Party name is required");
 
-            if (dto.Logo == null)
+            if (dto.Logo == null || dto.Logo.Length == 0)
                 return BadRequest("Logo is required");
 
             var exists = await _context.PoliticalParties
@@ -162,9 +166,19 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             if (exists)
                 return Conflict("Party already exists");
 
-            var fileName = Guid.NewGuid() + Path.GetExtension(dto.Logo.FileName);
-            var filePath = Path.Combine("uploads", fileName);
+            // 🔥 FIXED: Use WebRootPath (PRODUCTION SAFE)
+            var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
 
+            // Ensure folder exists
+            Directory.CreateDirectory(uploadsFolder);
+
+            // Create unique file name
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Logo.FileName);
+
+            // Full physical path
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            // Save file safely
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await dto.Logo.CopyToAsync(stream);
@@ -177,11 +191,9 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 IsApproved = false,
                 IsRejected = false,
 
-                // 🔥 FORCE ALL BALLOTS
                 ElectionType =
-                 ElectionType.Regional |
-                 ElectionType.Provincial |
-                 ElectionType.National
+                    ElectionType.Provincial |
+                    ElectionType.National
             };
 
             _context.PoliticalParties.Add(party);
@@ -189,9 +201,8 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
             return Ok(new { message = "Party submitted for approval" });
         }
-        [HttpDelete("delete-party/{id}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteParty(int id)
+        [HttpDelete("remove-party/{id}")]
+        public async Task<IActionResult> RemoveParty(int id)
         {
             var party = await _context.PoliticalParties.FindAsync(id);
 
@@ -199,9 +210,10 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
                 return NotFound("Party not found");
 
             _context.PoliticalParties.Remove(party);
+
             await _context.SaveChangesAsync();
 
-            return Ok("Party deleted");
+            return Ok("Party removed");
         }
     }
 }

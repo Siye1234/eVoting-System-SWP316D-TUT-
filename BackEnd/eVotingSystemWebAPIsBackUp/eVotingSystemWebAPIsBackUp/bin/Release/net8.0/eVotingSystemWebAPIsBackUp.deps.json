@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "eVotingSystemWebAPIsBackUp/1.0.0": {
         "dependencies": {
+          "AWSSDK.Rekognition": "4.0.3.30",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Identity": "2.3.9",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
@@ -23,6 +24,25 @@
         },
         "runtime": {
           "eVotingSystemWebAPIsBackUp.dll": {}
+        }
+      },
+      "AWSSDK.Core/4.0.7.1": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.7.1"
+          }
+        }
+      },
+      "AWSSDK.Rekognition/4.0.3.30": {
+        "dependencies": {
+          "AWSSDK.Core": "4.0.7.1"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Rekognition.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.3.30"
+          }
         }
       },
       "Azure.Core/1.25.0": {
@@ -1334,6 +1354,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/4.0.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XA0GHLwEMkoVu3u8neKnLEDD9ViXpn26ie9UhKXZXYRzCRfSFrLWpBOhupWlf+cJEFBYCC5mx2NsN8h59Y+M2Q==",
+      "path": "awssdk.core/4.0.7.1",
+      "hashPath": "awssdk.core.4.0.7.1.nupkg.sha512"
+    },
+    "AWSSDK.Rekognition/4.0.3.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4uqxwby8Q9KdQG/oJc6guOAhBaXZl5vi79ZjQpegNUuvC+4abjOmdn1skdCNq63sVg6ktbO8H+yVgrTl12Bt2g==",
+      "path": "awssdk.rekognition/4.0.3.30",
+      "hashPath": "awssdk.rekognition.4.0.3.30.nupkg.sha512"
     },
     "Azure.Core/1.25.0": {
       "type": "package",

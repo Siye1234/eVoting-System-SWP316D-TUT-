@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ballot</title>
+
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.party {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 10px;
+    background: #111827;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.party img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.party.selected {
+    border: 2px solid #22c55e;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #22c55e;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Select a Party</h2>
+
+        <div id="partyList"></div>
+
+        <button onclick="submitVote()">Submit Vote</button>
+    </div>
+</div>
+
+<script>
+
+const token = localStorage.getItem("token");
+
+let isSubmitting = false;
+let allowedElectionType = 0;
+
+// STATE (REFRESH SAFE)
+let selectedVotes = JSON.parse(localStorage.getItem("selectedVotes")) || {
+    national: null,
+    provincial: null
+};
+
+// ===============================
+// LOAD VOTER STATUS
+// ===============================
+async function loadVoterAllowedBallots() {
+
+    try {
+        const res = await fetch("/api/Voter/my-status", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        console.log("STATUS RESPONSE:", res.status);
+
+        if (!res.ok) {
+            console.log("STATUS ERROR:", await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        console.log("STATUS DATA:", data);
+
+        allowedElectionType = data.electionType ?? 0;
+
+        console.log("allowedElectionType SET TO:", allowedElectionType);
+
+    } catch (err) {
+        console.log("STATUS FETCH ERROR:", err);
+    }
+}
+
+// ===============================
+// LOAD BALLOTS
+// ===============================
+async function loadParties() {
+
+    try {
+        const res = await fetch("/api/SuperAdmin/ballot-parties", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        console.log("PARTIES STATUS:", res.status);
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        console.log("BALLOT DATA:", data);
+
+        const container = document.getElementById("partyList");
+        container.innerHTML = "";
+
+        function renderGroup(title, list, type) {
+
+            if (!list || list.length === 0) return;
+
+            const group = document.createElement("div");
+            group.className = "ballot-group";
+
+            const header = document.createElement("h3");
+            header.innerText = title;
+            group.appendChild(header);
+
+            list.forEach(p => {
+
+                const div = document.createElement("div");
+                div.className = "party";
+
+                const img = p.logoUrl.startsWith("http")
+                    ? p.logoUrl
+                    : `https://localhost:7245${p.logoUrl}`;
+
+                div.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <img src="${img}" width="40" height="40"/>
+                        <span>${p.partyName}</span>
+                    </div>
+                `;
+
+                div.onclick = () => selectParty(div, p.id, type);
+
+                if (selectedVotes[type] === p.id) {
+                    div.classList.add("selected");
+                }
+
+                group.appendChild(div);
+            });
+
+            container.appendChild(group);
+        }
+
+        // ===============================
+        // FINAL ACCESS LOGIC (FIXED)
+        // ===============================
+
+        console.log("allowedElectionType =", allowedElectionType);
+
+        if (allowedElectionType === 2) {
+
+            console.log("FULL ACCESS USER (ALL BALLOTS)");
+
+            renderGroup("Ballot 1: National", data.national, "national");
+            renderGroup("Ballot 2: Provincial", data.provincial, "provincial");
+            
+
+        } else if (allowedElectionType === 4) {
+
+            console.log("NATIONAL ONLY USER");
+
+            renderGroup("Ballot 1: National", data.national, "national");
+
+        } 
+        else {
+
+            console.log("UNKNOWN TYPE → DEFAULT TO NATIONAL");
+
+            renderGroup("Ballot 1: National", data.national, "national");
+        }
+
+    } catch (err) {
+        console.log("LOAD ERROR:", err);
+    }
+}
+
+// ===============================
+// SELECT PARTY
+// ===============================
+function selectParty(element, id, type) {
+
+    const group = element.closest(".ballot-group");
+
+    group.querySelectorAll(".party").forEach(p => {
+        p.classList.remove("selected");
+    });
+
+    element.classList.add("selected");
+
+    selectedVotes[type] = id;
+
+    localStorage.setItem("selectedVotes", JSON.stringify(selectedVotes));
+}
+
+// ===============================
+// SUBMIT VOTE
+// ===============================
+async function submitVote() {
+
+    if (isSubmitting) return;
+
+    const votesToSubmit = [];
+
+    if (selectedVotes.national)
+        votesToSubmit.push({ id: selectedVotes.national, type: "National" });
+
+    if (selectedVotes.provincial)
+        votesToSubmit.push({ id: selectedVotes.provincial, type: "Provincial" });   
+
+    if (votesToSubmit.length === 0) {
+        alert("Please select at least one ballot");
+        return;
+    }
+
+    isSubmitting = true;
+
+    try {
+
+        for (let v of votesToSubmit) {
+            await submitSingleVote(v.id, v.type);
+        }
+
+        alert("Voting completed ✔");
+
+        localStorage.removeItem("selectedVotes");
+
+        setTimeout(() => {
+            window.location.href = "voter_dashboard.html";
+        }, 1500);
+
+    } catch (err) {
+        console.log(err);
+        alert("Voting failed ❌");
+    } finally {
+        isSubmitting = false;
+    }
+}
+
+// ===============================
+// SINGLE VOTE
+// ===============================
+async function submitSingleVote(partyId, electionType) {
+
+    const map = {
+        "National": 4,
+        "Provincial": 2
+    };
+
+    const res = await fetch("/api/Voting/cast-vote", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            partyId,
+            electionType: map[electionType]
+        })
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok) {
+
+        console.log("VOTE ERROR:", data);
+
+        const msg = data?.message || "";
+
+        if (msg.includes("already voted")) {
+            alert(`Already voted in ${electionType}`);
+            return;
+        }
+
+        throw new Error(msg || "Voting failed");
+    }
+
+    alert(`${electionType} vote saved ✔`);
+}
+
+// ===============================
+// INIT
+// ===============================
+async function init() {
+    await loadVoterAllowedBallots();
+    loadParties();
+}
+
+init();
+
+</script>
+
+</body>
+</html>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-
+using System.Text.RegularExpressions;
 namespace eVotingSystemWebAPIsBackUp.Controllers
 {
     [Route("api/[controller]")]
@@ -48,6 +48,26 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
 
             if (!reg.Email.Contains("@"))
                 return BadRequest("Invalid Email Address.");
+
+            var existingEmail = await _context.Voters.FirstOrDefaultAsync(v => v.Email == reg.Email);
+
+            if (existingEmail != null)
+                return BadRequest("Email is already registered.");
+
+
+            if (string.IsNullOrEmpty(reg.PhoneNumber) || !reg.PhoneNumber.All(char.IsDigit) || reg.PhoneNumber.Length < 10)
+                return BadRequest("Invalid phone number.");
+
+            if (string.IsNullOrEmpty(reg.PhoneNumber) || !Regex.IsMatch(reg.PhoneNumber,
+                @"^(\+27|0)(60|61|62|63|64|65|66|67|68|69|71|72|73|74|76|78|79|81|82|83|84)[0-9]{7}$"))
+            {
+                return BadRequest("Please enter a valid South African cellphone number.");
+            }
+
+            var existingPhone = await _context.Voters.FirstOrDefaultAsync(v => v.PhoneNumber == reg.PhoneNumber);
+
+            if (existingPhone != null)
+                return BadRequest("Phone number is already registered.");
 
             if (string.IsNullOrEmpty(reg.Password) || reg.Password.Length < 6)
                 return BadRequest("Password must be at least 6 characters.");
@@ -201,7 +221,7 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             var voterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var history = await _context.Votes
-                .Where(v => v.VoterId == voterId) // ✅ FILTER BY VOTER
+                .Where(v => v.VoterId == voterId) 
                 .Select(v => new
                 {
                     electionType = v.ElectionType,
@@ -232,7 +252,8 @@ namespace eVotingSystemWebAPIsBackUp.Controllers
             {
                 firstName = voter.FirstName,
                 middleName = voter.MiddleName,
-                lastName = voter.LastName
+                lastName = voter.LastName,
+                idNo = voter.IdNo
             });
         }
 

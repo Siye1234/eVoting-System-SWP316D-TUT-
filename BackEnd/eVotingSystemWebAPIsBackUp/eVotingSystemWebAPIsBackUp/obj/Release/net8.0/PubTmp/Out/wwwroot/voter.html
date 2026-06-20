@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voter Dashboard</title>
+
+<style>
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+    line-height: 1.4;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+    background: #111827;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+header h2 {
+    font-size: 20px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+header button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+.status-btn { background: #3b82f6; }
+.history-btn { background: #22c55e; }
+.logout-btn { background: #ef4444; }
+
+.btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.btn-blue {
+    background: #3b82f6;
+    color: white;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    min-width: 600px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: #111827;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #111827;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 320px;
+}
+
+.history-item {
+    padding: 10px;
+    background: #1f2937;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
+.close-btn {
+    background: #ef4444;
+    padding: 8px 12px;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Botpress fix */
+.bp-widget-web {
+    position: fixed;
+    z-index: 999999;
+}
+
+
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+    header {
+        text-align: center;
+        align-items: center;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header button {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* VERY SMALL PHONES */
+@media (max-width: 360px) {
+
+    header h2 {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    #countdown {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2 id="userHeader">Voter Dashboard</h2>
+
+<div class="header-actions">
+
+    <button class="status-btn" onclick="openStatus()">Check Status</button>
+
+    <button class="history-btn" onclick="openHistory()">My Voting History</button>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Next National Election</h3>
+        <p id="countdown"></p>
+        <p id="regStatus" style="margin-top:10px;font-weight:bold;"></p>
+
+        <button class="btn btn-blue" onclick="registerToVote()">
+            Register to Vote
+        </button>
+        <button id="voteBtn" class="btn btn-blue" style="display:none;" onclick="goToVote()">
+            Vote Now
+        </button>
+    </div>
+
+    <!-- ELECTION RESULTS -->
+<div class="card">
+    <h3>Election Results</h3>
+
+    <button class="btn btn-blue" onclick="loadElectionResults()">
+        View Election Results
+    </button>
+
+    <div id="resultsContainer" style="margin-top:15px;"></div>
+</div>
+
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h3>South Africa National Election History</h3>
+
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Winning Party</th>
+                <th>Percentage</th>
+            </tr>
+
+            <tr><td>1994</td><td>ANC</td><td>62.6%</td></tr>
+            <tr><td>1999</td><td>ANC</td><td>66.4%</td></tr>
+            <tr><td>2004</td><td>ANC</td><td>69.7%</td></tr>
+            <tr><td>2009</td><td>ANC</td><td>65.9%</td></tr>
+            <tr><td>2014</td><td>ANC</td><td>62.1%</td></tr>
+            <tr><td>2019</td><td>ANC</td><td>57.5%</td></tr>
+            <tr><td>2024</td><td>ANC</td><td>~40–45%</td></tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="infoModal">
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal()">Close</button>
+
+        <h3 id="modalTitle">Info</h3>
+
+        <div id="historyContainer"></div>
+        <div id="statusContainer"></div>
+
+    </div>
+</div>
+
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+
+
+<script src="https://files.bpcontent.cloud/2026/05/29/08/20260529083138-Z1FXY7J8.js" defer></script>
+
+<script>
+
+let isApproved = false; 
+
+
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
+
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+if (!token || role !== "Voter") {
+    alert("Access denied. Please login as Voter.");
+    window.location.href = "login.html";
+}
+
+
+const electionDate = new Date();
+electionDate.setMonth(electionDate.getMonth() + 11);
+
+// COUNTDOWN
+function updateUI() {
+    const now = new Date();
+    const diff = electionDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const months = Math.floor(days / 30);
+
+    document.getElementById("countdown").innerText =
+        months + " months (" + days + " days remaining)";
+}
+
+// REGISTER
+function registerToVote() {
+    window.location.href = "voting_registration.html";
+}
+
+// VOTE NOW
+function goToVote() {
+    window.location.href = "faceVerification.html";
+}
+
+
+async function loadVoterProfile() {
+
+    try {
+        const res = await fetch("/api/Voter/me", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const user = await res.json();
+
+        let fullName = "";
+
+        if (user.middleName) {
+            fullName = `${user.firstName} ${user.middleName} ${user.lastName}`;
+        } else {
+            fullName = `${user.firstName} ${user.lastName}`;
+        }
+
+        document.getElementById("userHeader").innerText = fullName;
+
+    } catch (err) {
+        console.log("Profile load error:", err);
+        document.getElementById("userHeader").innerText = "Voter Dashboard";
+    }
+}
+
+
+function getElectionTypeName(value) {
+    const map = {        
+        2: "Provincial",
+        4: "National"
+    };
+    return map[value] || "Unknown";
+}
+
+
+async function openHistory() {
+
+    document.getElementById("modalTitle").innerText = "My Voting History";
+
+    document.getElementById("statusContainer").style.display = "none";
+    document.getElementById("historyContainer").style.display = "block";
+
+    const container = document.getElementById("historyContainer");
+    container.innerHTML = "Loading...";
+
+    try {
+        const res = await fetch("/api/Voter/my-history", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const history = await res.json();
+
+        container.innerHTML = "";
+
+        if (!history || history.length === 0) {
+            container.innerHTML = "<p>No voting history found.</p>";
+            return;
+        }
+
+        history.forEach(item => {
+
+            const div = document.createElement("div");
+            div.className = "history-item";
+
+            const date = new Date(item.dateVoted);
+
+            const formattedTime = date.toLocaleTimeString();
+            const formattedDate = date.toLocaleDateString();
+
+            const electionName = getElectionTypeName(item.electionType);
+
+            div.innerHTML = `
+                <p><b>Election:</b> ${electionName}</p>
+                <p><b>Date:</b> ${formattedDate}</p>
+                <p><b>Time:</b> ${formattedTime}</p>
+            `;
+
+            container.appendChild(div);
+        });
+
+    } catch (err) {
+        container.innerHTML = "<p>Error loading history.</p>";
+        console.log("History API error:", err);
+    }
+
+    document.getElementById("infoModal").style.display = "flex";
+}
+
+
+function openStatus() {
+
+    document.getElementById("modalTitle").innerText = "My Voting Status";
+
+    document.getElementById("historyContainer").style.display = "none";
+    document.getElementById("statusContainer").style.display = "block";
+
+    loadMyStatus();
+
+    document.getElementById("infoModal").style.display = "flex";
+}
+
+
+async function loadMyStatus() {
+
+    try {
+        const res = await fetch("/api/Voter/my-status", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const data = await res.json();
+        const record = Array.isArray(data) ? data[0] : data;
+
+        if (!record) return;
+
+        let statusValue = record.isApproved;
+
+        if (statusValue === true || statusValue === "true" || statusValue === 1) {
+            isApproved = true;
+        } 
+        else if (statusValue === false || statusValue === "false" || statusValue === 0) {
+            isApproved = false;
+        } 
+        else {
+            isApproved = null;
+        }
+
+        let statusText = "";
+
+        if (isApproved === true) {
+            statusText = "Approved ✔";
+        } else if (isApproved === false) {
+            statusText = "Rejected ❌";
+        } else {
+            statusText = "Pending ⏳";
+        }
+
+        document.getElementById("statusContainer").innerHTML = `
+            <div style="padding:10px;background:#1f2937;border-radius:8px;">
+                <p><b>Status:</b> ${statusText}</p>
+                <p><b>Comment:</b> ${record.adminComment ?? "No comment"}</p>
+            </div>
+        `;
+
+        checkVotingPeriod();
+
+    } catch (err) {
+        console.log("API ERROR:", err);
+    }
+}
+
+
+function checkVotingAvailability() {
+
+    const voteBtn = document.getElementById("voteBtn");
+    if (!voteBtn) return;
+
+    const shouldShow = (isApproved === true);
+
+    voteBtn.style.display = shouldShow ? "inline-block" : "none";
+}
+async function checkVotingPeriod() {
+
+    try {
+
+        const res = await fetch("/api/Voting/status");
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        const data = await res.json();
+
+        const startDate = new Date(data.startDate);
+        const endDate = new Date(data.endDate);
+        const now = new Date();
+
+        const voteBtn = document.getElementById("voteBtn");
+        if (!voteBtn) return;
+
+        const isOpen = now >= startDate && now <= endDate;
+
+        const shouldShow = (isApproved === true && isOpen);
+
+        voteBtn.style.display = shouldShow ? "inline-block" : "none";
+
+    } catch (err) {
+        console.log("Voting status API error:", err);
+    }
+}
+
+let countdownInterval = null;
+
+async function loadElectionDate() {
+    try {
+        const res = await fetch("/api/SuperAdmin/get-election-dates", {
+            headers: {
+                "Authorization": "Bearer " + getToken() // if endpoint is protected
+                // Use [AllowAnonymous] on backend to avoid needing token
+            }
+        });
+
+        if (!res.ok) {
+            if (res.status === 404) {
+                document.getElementById("countdown").innerText = "🗓️ Election date not set";
+                return;
+            }
+            throw new Error("Failed to fetch election date");
+        }
+
+        const data = await res.json();
+        // Expecting { startDate: "2026-12-01T00:00:00", endDate: "..." }
+        const electionDate = new Date(data.startDate);
+
+        if (isNaN(electionDate.getTime())) {
+            throw new Error("Invalid election date received");
+        }
+
+        // Clear any previous interval
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+
+        // Start countdown
+        countdownInterval = setInterval(() => {
+            const diff = electionDate - new Date();
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerText = "Election Started 🟢";
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").innerText =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+
+    } catch (err) {
+        console.error("Error loading election date:", err);
+        document.getElementById("countdown").innerText = "⚠️ Could not load election date";
+    }
+}
+
+
+async function loadElectionResults() {
+
+    const container = document.getElementById("resultsContainer");
+    container.innerHTML = "Loading results...";
+
+    try {
+
+        const res = await fetch("api/Voting/election-results");
+
+        if (!res.ok) {
+            container.innerHTML = "Failed to load results";
+            return;
+        }
+
+        const data = await res.json();
+
+        console.log("RESULTS API:", data);
+
+        // =========================
+        // NOT PUBLISHED YET
+        // =========================
+        if (!data.isPublished) {
+            container.innerHTML = `
+                <div style="padding:10px;background:#ef4444;color:white;border-radius:8px;">
+                    ${data.message}
+                </div>
+            `;
+            return;
+        }
+
+        // =========================
+        // DISPLAY RESULTS
+        // =========================
+        const r = data.data;
+
+        container.innerHTML = `
+            <h3>🏆 Election Results</h3>
+
+            <div class="card">
+                <h4>National</h4>
+                <p><b>Winner:</b> ${r.national.partyName}</p>
+                <p><b>Votes:</b> ${r.national.votes}</p>
+            </div>
+
+            <div class="card">
+                <h4>Provincial</h4>
+                <p><b>Winner:</b> ${r.provincial.partyName}</p>
+                <p><b>Votes:</b> ${r.provincial.votes}</p>
+            </div>            
+        `;
+
+    } catch (err) {
+        console.log(err);
+        container.innerHTML = "Error loading results";
+    }
+}
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+
+
+async function initBotpressUser() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+        const res = await fetch("/api/Voter/me", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const user = await res.json();
+
+        // Store in localStorage for fallback
+        localStorage.setItem('firstName', user.firstName);
+        localStorage.setItem('lastName', user.lastName);
+
+        const waitForBotpress = () => {
+            if (window.botpress && typeof window.botpress.updateUser === 'function') {
+                // Direct updateUser – this should persist to the 'user' object in workflows
+                window.botpress.updateUser({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    idNo: user.idNo,
+                    isApproved: user.isApproved ? "Approved" : "Pending",
+                    isRegistered: true
+                }).then(() => {
+                    console.log("✅ User data updated via window.botpress.updateUser");
+                }).catch(err => {
+                    console.error("updateUser error:", err);
+                });
+            } else {
+                setTimeout(waitForBotpress, 200);
+            }
+        };
+        waitForBotpress();
+    } catch (err) {
+        console.error("Failed to load user for Botpress:", err);
+    }
+}
+window.addEventListener("load", async () => {
+    updateUI();
+    loadElectionDate()
+    loadMyStatus();
+    loadVoterProfile();
+    checkVotingPeriod();
+    initBotpressUser();
+});
+</script>
+    
+
+
+</body>
+</html> **

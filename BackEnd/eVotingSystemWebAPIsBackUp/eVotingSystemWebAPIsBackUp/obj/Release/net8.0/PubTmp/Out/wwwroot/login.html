@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - eVoting System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #111827);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #3b82f6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+.error {
+    color: #ef4444;
+    margin-top: 10px;
+    text-align: center;
+}
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+
+.btn {
+    max-width: 320px;
+}
+
+
+footer p {
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Login</h2>
+
+    <input type="text" id="idNo" placeholder="ID Number / Staff Number">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p id="msg" class="error"></p>
+</div>
+
+<script>
+
+async function login() {
+
+    const idNo = document.getElementById("idNo").value;
+    const password = document.getElementById("password").value;
+    const msg = document.getElementById("msg");
+
+    msg.innerText = "";
+
+    if (!idNo || !password) {
+        msg.innerText = "Please enter all fields";
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/api/Auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idNo: idNo,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        console.log("LOGIN RESPONSE:", data);
+
+        if (!response.ok) {
+            msg.innerText = data.message || "Login failed";
+            return;
+        }
+
+        // STORE AUTH DATA
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("idNo", data.idNo);
+
+        // ROLE REDIRECT
+        if (data.role === "Voter") {
+            window.location.href = "voter.html";
+        }
+        else if (data.role === "Admin") {
+            window.location.href = "admin.html";
+        }
+        else if (data.role === "SuperAdmin") {
+            window.location.href = "super_admin.html";
+        }
+        else {
+            msg.innerText = "Unknown role";
+        }
+
+    } catch (error) {
+        console.error(error);
+        msg.innerText = "Server not reachable";
+    }
+}
+
+</script>
+
+</body>
+</html>

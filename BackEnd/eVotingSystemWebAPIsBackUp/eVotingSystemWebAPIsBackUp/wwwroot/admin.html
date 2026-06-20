@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+}
+
+/* HEADER */
+header {
+    background: #111827;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* CARDS */
+.card {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.green { background: #22c55e; color: white; }
+.red { background: #ef4444; color: white; }
+.blue { background: #3b82f6; color: white; }
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+}
+
+th {
+    background: #111827;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #111827;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* DOCUMENT VIEWER */
+#docViewer {
+    width: 100%;
+    height: 400px;
+}
+
+/* PARTY ITEM */
+.party-item {
+    background: #1f2937;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Admin Dashboard</h2>
+</header>
+
+<div class="container">
+
+    <!-- VOTER COUNT -->
+    <div class="card">
+        <h3>Registered Voters</h3>
+        <h1 id="voterCount">128</h1>
+    </div>
+
+    <!-- ELECTION COUNTDOWN -->
+<div class="card">
+    <h3>Election Countdown</h3>
+    <h1 id="countdownText">Loading...</h1>
+</div>
+
+    <!-- ADDRESS VERIFICATION -->
+    <div class="card">
+        <h3>Proof of Address Verification</h3>
+
+        <table>
+            <tr>
+                <th>ID No</th>
+                <th>Address</th>
+                <th>Proof</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tbody id="userTable"></tbody>
+        </table>
+    </div>
+
+    <!-- PARTY MANAGEMENT -->
+    <div class="card">
+        <h3>Political Parties</h3>
+
+        <button class="green" onclick="openAddModal()">Add Party</button>
+        <button class="red" onclick="openRemoveModal()">Remove Party</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+
+<!-- ADD PARTY MODAL -->
+<div class="modal" id="addModal">
+    <div class="modal-content">
+        <h3>Add Party</h3>
+
+        <input type="text" id="newParty" placeholder="Party Name" style="width:100%;padding:10px;margin-top:10px;">
+        
+        <input type="file" id="partyLogo" accept="image/*" style="width:100%;padding:10px;margin-top:10px;">
+
+        <button class="green" onclick="addParty()">Save</button>
+        <button class="red" onclick="closeModals()">Close</button>
+    </div>
+</div>
+
+
+
+<!-- REMOVE PARTY MODAL -->
+<div class="modal" id="removeModal">
+    <div class="modal-content">
+        <h3>Remove Party</h3>
+        <div id="partyList"></div>
+        <button class="red" onclick="closeModals()">Close</button>
+    </div>
+</div>
+
+<!-- DOCUMENT MODAL -->
+<div class="modal" id="docModal">
+    <div class="modal-content">
+        <h3>Proof of Address</h3>
+
+        <div id="docViewer"></div>
+
+        <button class="red" onclick="closeDoc()">Close</button>
+    </div>
+</div>
+
+<script>
+
+let users = [];
+
+
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+
+async function loadUsers() {
+    try {
+        const res = await fetch("/api/Admin/registrations/pending", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        if (!res.ok) {
+            console.log(await res.text());
+            return;
+        }
+
+        users = await res.json();
+
+        console.log("LOADED USERS:", users);
+
+        renderTable();
+
+    } catch (err) {
+        console.log("LOAD ERROR:", err);
+    }
+}
+
+
+function renderTable() {
+
+    const table = document.getElementById("userTable");
+    table.innerHTML = "";
+
+    users.forEach((u, index) => {
+
+        const statusText = u.isApproved ? "Approved ✔" : "Pending ⏳";
+        const color = u.isApproved ? "#22c55e" : "#facc15";
+
+        table.innerHTML += `
+            <tr>
+                <td>${u.idNo}</td>
+                <td>${u.residentialAddress || "N/A"}</td>
+
+                <td>
+                    <button class="blue" onclick="viewDoc(${index})">View</button>
+                </td>
+
+                <td style="color:${color}; font-weight:bold;">
+                    ${statusText}
+                </td>
+
+                <td>
+                    <button class="green" onclick="approve(${index})">Approve</button>
+                    <button class="red" onclick="reject(${index})">Reject</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+
+function viewDoc(i) {
+
+    const file = users[i].proofOfAddressPath;
+
+    const viewer = document.getElementById("docViewer");
+
+    if (!file) {
+        viewer.innerHTML = "<p>No document uploaded</p>";
+        return;
+    }
+
+    const fullUrl = `https://localhost:7245${file}`;
+
+    if (file.endsWith(".pdf")) {
+        viewer.innerHTML = `
+            <iframe src="${fullUrl}" width="100%" height="400px"></iframe>
+        `;
+    } else {
+        viewer.innerHTML = `
+            <img src="${fullUrl}" style="width:100%;height:400px;object-fit:contain;">
+        `;
+    }
+
+    document.getElementById("docModal").style.display = "flex";
+}
+
+
+function closeDoc() {
+    document.getElementById("docModal").style.display = "none";
+    document.getElementById("docViewer").innerHTML = "";
+}
+
+
+async function approve(index) {
+
+    const user = users[index];
+
+    const comment = prompt("Approval comment (optional):");
+
+    try {
+        const res = await fetch("/api/Admin/approve", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+            body: JSON.stringify({
+                idNo: user.idNo,
+                comment: comment || null
+            })
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        alert("Document approved ✔");
+
+        loadUsers();
+        loadVoterCount();
+
+    } catch (err) {
+        console.log(err);
+        alert("Error approving document");
+    }
+}
+
+
+async function reject(index) {
+
+    const user = users[index];
+
+    const comment = prompt("Enter rejection reason:");
+
+    if (!comment || comment.trim() === "") {
+        alert("Reason required");
+        return;
+    }
+
+    try {
+        const res = await fetch("/api/Admin/reject", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+            body: JSON.stringify({
+                idNo: user.idNo,
+                comment: comment
+            })
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        alert("Document rejected ❌");
+
+        loadUsers();
+        loadVoterCount();
+
+    } catch (err) {
+        console.log(err);
+        alert("Error rejecting document");
+    }
+}
+
+
+let countdownInterval = null;
+
+async function loadElectionDate() {
+    try {
+        const res = await fetch("/api/SuperAdmin/get-election-dates", {
+            headers: {
+                "Authorization": "Bearer " + getToken() // remove if using [AllowAnonymous]
+            }
+        });
+
+        if (!res.ok) {
+            if (res.status === 404) {
+                document.getElementById("countdownText").innerText = "🗓️ Election date not set";
+                return;
+            }
+            throw new Error("Failed to fetch election date");
+        }
+
+        const data = await res.json();
+        // The API returns { startDate: "...", endDate: "..." }
+        const electionDate = new Date(data.startDate);
+
+        if (isNaN(electionDate.getTime())) {
+            throw new Error("Invalid election date received");
+        }
+
+        // Clear any previous interval to avoid duplicates
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+
+        // Start countdown
+        countdownInterval = setInterval(() => {
+            const diff = electionDate - new Date();
+
+            if (diff <= 0) {
+                document.getElementById("countdownText").innerText = "Election Started 🟢";
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdownText").innerText =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+
+    } catch (err) {
+        console.error("Error loading election date:", err);
+        document.getElementById("countdownText").innerText = "⚠️ Could not load election date";
+    }
+}
+
+async function loadVoterCount() {
+
+    try {
+        const res = await fetch("/api/VotingRegistration/voters/count", {
+            headers: {
+                "Authorization": `Bearer ${getToken()}`
+            }
+        });
+
+        const data = await res.json();
+        document.getElementById("voterCount").innerText = data.count;
+
+    } catch (err) {
+        console.log(err);
+        document.getElementById("voterCount").innerText = "Error";
+    }
+}
+
+
+
+async function addParty() {
+
+    const name = document.getElementById("newParty").value.trim();
+    const file = document.getElementById("partyLogo").files[0];
+
+    if (!name || !file) {
+        alert("All fields required");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("PartyName", name);
+    formData.append("Logo", file);
+
+    const res = await fetch("/api/Admin/create-party", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + getToken()
+        },
+        body: formData
+    });
+
+    if (!res.ok) {
+        alert(await res.text());
+        return;
+    }
+
+    alert("Party added successfully");
+
+    document.getElementById("newParty").value = "";
+    document.getElementById("partyLogo").value = "";
+}
+
+// MODALS
+function openAddModal() {
+    document.getElementById("addModal").style.display = "flex";
+}
+
+function openRemoveModal() {
+    document.getElementById("removeModal").style.display = "flex";
+}
+
+function closeModals() {
+    document.getElementById("addModal").style.display = "none";
+    document.getElementById("removeModal").style.display = "none";
+}
+
+
+// LOAD PARTIES 
+async function loadParties() {
+    try {
+        const res = await fetch("/api/SuperAdmin/get-parties", {
+            headers: {
+                "Authorization": "Bearer " + getToken()
+            }
+        });
+
+        const data = await res.json();
+
+        let html = "";
+
+        data.forEach(p => {
+
+            const status =
+                p.isApproved ? "Approved ✔" :
+                p.isRejected ? "Rejected ❌" :
+                "Pending ⏳";
+
+            html += `
+                <div class="party-item">
+                    <span>${p.partyName} - ${status}</span>
+
+                    <button
+                        class="red"
+                       onclick="removeParty(${p.id})">
+                        Remove
+                    </button>
+                </div>
+            `;
+        });
+
+        document.getElementById("partyList").innerHTML = html;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+async function removeParty(id) {
+
+    if (!confirm("Are you sure you want to remove this party?")) {
+        return;
+    }
+
+    try {
+
+        const res = await fetch(`/api/Admin/remove-party/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + getToken()
+            }
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        alert("Party removed successfully");
+
+        loadParties();
+
+    } catch (err) {
+        console.log(err);
+        alert("Error removing party");
+    }
+}
+
+
+// LOGOUT
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+
+// INIT
+loadUsers();
+loadElectionDate();
+loadVoterCount();
+loadParties();
+
+</script>
+
+</body>
+</html>

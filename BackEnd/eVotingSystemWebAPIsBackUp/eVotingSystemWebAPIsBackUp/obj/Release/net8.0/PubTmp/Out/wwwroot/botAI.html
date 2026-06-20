@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>eVoting Chatbot</title>
+</head>
+
+<body>
+
+<h2>Welcome to eVoting System</h2>
+
+<!-- Botpress Webchat -->
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/05/29/08/20260529083138-Z1FXY7J8.js" defer></script>
+
+<script>
+
+let token = localStorage.getItem("token");
+
+// ==========================
+// SEND USER DATA TO BOTPRESS
+// ==========================
+async function initBotpressUser() {
+
+    if (!token) {
+        console.log("No token found - Botpress not initialized");
+        return;
+    }
+
+    try {
+        const res = await fetch("https://localhost:7245/api/Voter/me", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!res.ok) {
+            console.log("Failed to load user");
+            return;
+        }
+
+        const user = await res.json();
+
+        const fullName = user.middleName
+            ? `${user.firstName} ${user.middleName} ${user.lastName}`
+            : `${user.firstName} ${user.lastName}`;
+
+        // Wait for Botpress to load
+        window.addEventListener("bp:ready", () => {
+
+            window.botpress.sendPayload({
+                type: "custom-user-data",
+                payload: {
+                    id: user.id || user.voterId,
+                    name: fullName,
+                    role: "Voter",
+                    status: user.isApproved ? "Approved" : "Pending"
+                }
+            });
+
+        });
+
+        console.log("Botpress user data ready for:", fullName);
+
+    } catch (err) {
+        console.log("Botpress init error:", err);
+    }
+}
+
+
+// ==========================
+// PAGE LOAD
+// ==========================
+window.onload = function () {
+
+    initBotpressUser();
+
+};
+
+</script>
+
+</body>
+</html>

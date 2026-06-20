@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voting Registration</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #111827);
+    color: white;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+}
+
+.card {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #22c55e;
+}
+
+.section {
+    margin-top: 15px;
+    padding: 15px;
+    background: #111827;
+    border-radius: 10px;
+}
+
+.checkbox {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary { background: #22c55e; }
+.camera-btn { background: #3b82f6; }
+.capture-btn { background: #ef4444; }
+
+video, img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.status {
+    margin-top: 10px;
+}
+
+/* =========================
+   EXTRA RESPONSIVENESS FIX
+   (NO STYLE CHANGES)
+========================= */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Improve header wrapping on very small screens */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    header h2 {
+        font-size: 16px;
+    }
+
+    header img {
+        width: 40px;
+    }
+}
+
+/* Better hero spacing on tablets */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 90%;
+    }
+}
+
+/* Prevent button stretching issues */
+.btn {
+    max-width: 320px;
+}
+
+/* Ensure footer text doesn't overflow on small screens */
+footer p {
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h2>Voting Registration</h2>
+
+<!-- NATIONAL -->
+<div class="section">
+    <h3>National Election</h3>
+    <p></p>
+</div>
+
+<!-- PROVINCIAL -->
+<div class="section">
+    <h3>Provincial Election</h3>
+    <div class="checkbox">
+        <input type="checkbox" id="provCheck" onchange="toggleProv()">
+        <label>Tick The Box to Register for Provincial and Reginal</label>
+    </div>
+</div>
+
+<!-- PROV SECTION -->
+<div class="section" id="provSection" style="display:none;">
+
+    <label>Address</label>
+    <input type="text" id="address">
+
+    <label>Upload Proof (PDF)</label>
+    <input type="file" id="proofFile" accept=".pdf">
+</div>
+
+<!-- FACE SCAN (ALWAYS REQUIRED) -->
+<div class="section">
+
+    <h3>TAKE A PICTURE</h3>
+
+    <video id="video" autoplay></video>
+    <img id="preview" style="display:none;">
+
+    <button class="camera-btn" onclick="startCamera()">Start Camera</button>
+    <button class="capture-btn" onclick="captureFace()">Capture Face</button>
+
+    <p id="status"></p>
+
+</div>
+
+<button class="primary" onclick="submitRegistration()">Submit</button>
+
+</div>
+</div>
+
+<script>
+
+let currentStream = null;
+
+// ================= TOGGLE =================
+function toggleProv() {
+    document.getElementById("provSection").style.display =
+        document.getElementById("provCheck").checked ? "block" : "none";
+}
+
+// ================= CAMERA =================
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            currentStream = stream;
+            document.getElementById("video").srcObject = stream;
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Camera access denied");
+        });
+}
+
+// ================= CAPTURE FACE =================
+function captureFace() {
+
+    const video = document.getElementById("video");
+
+    if (!video.videoWidth) {
+        alert("Camera not ready");
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    canvas.getContext("2d").drawImage(video, 0, 0);
+
+    canvas.toBlob(blob => {
+
+        const preview = document.getElementById("preview");
+        preview.src = URL.createObjectURL(blob);
+        preview.style.display = "block";
+
+        document.getElementById("status").innerText = "Face captured ✔";
+
+        // STOP CAMERA
+        if (currentStream) {
+            currentStream.getTracks().forEach(t => t.stop());
+            currentStream = null;
+        }
+
+        video.srcObject = null;
+
+        // store blob globally
+        window.capturedBlob = blob;
+
+    }, "image/png");
+}
+
+async function checkDuplicateFace() {
+
+    const formData = new FormData();
+    formData.append("liveImage", window.capturedBlob);
+
+    const res = await fetch("/api/Face/check-duplicate-face", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: formData
+    });
+
+    if (!res.ok) {
+        const text = await res.text();
+        console.log("Face check error:", text);
+        throw new Error("Face verification failed");
+    }
+
+    return await res.json();
+}
+
+
+async function submitRegistration() {
+
+    const token = localStorage.getItem("token");
+    const isAll = document.getElementById("provCheck").checked;
+
+    if (!token) {
+        alert("Session expired. Please login again.");
+        return;
+    }
+
+    if (!window.capturedBlob) {
+        alert("Face capture is required");
+        return;
+    }
+
+    let address = "";
+    let proofFile = null;
+
+    if (isAll) {
+
+        address = document.getElementById("address").value;
+
+        if (!address) {
+            alert("Residential address is required");
+            return;
+        }
+
+        proofFile = document.getElementById("proofFile").files[0];
+
+        if (!proofFile) {
+            alert("Proof of address is required");
+            return;
+        }
+    }
+
+    const electionType = isAll ? 2 : 4;
+
+    try {
+
+        // ==============================
+        // STEP 1: FACE DUPLICATE CHECK
+        // ==============================
+        const faceCheck = await checkDuplicateFace();
+
+        if (faceCheck.duplicate) {
+            alert(
+                "❌ This face is already registered in the system.\n" +
+                `Similarity: ${faceCheck.similarity}%`
+            );
+            return;
+        }
+
+        // ==============================
+        // STEP 2: CONTINUE REGISTRATION
+        // ==============================
+        const formData = new FormData();
+
+        formData.append("ElectionType", electionType);
+        formData.append("ResidentialAddress", address);
+
+        const faceFile = new File([window.capturedBlob], "face.png", {
+            type: "image/png"
+        });
+
+        formData.append("FaceImage", faceFile);
+
+        if (isAll) {
+            formData.append("ProofFile", proofFile);
+        }
+
+        const res = await fetch("/api/VotingRegistration/register", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        const text = await res.text();
+
+        if (!res.ok) {
+            console.log("ERROR:", text);
+            alert(text);
+            return;
+        }
+
+        alert("✔ Voting registration successful");
+        window.location.href = "voter.html";
+
+    } catch (err) {
+        console.log("Submit error:", err);
+        alert("Server error during registration");
+    }
+}
+
+</script>
+
+</body>
+</html>

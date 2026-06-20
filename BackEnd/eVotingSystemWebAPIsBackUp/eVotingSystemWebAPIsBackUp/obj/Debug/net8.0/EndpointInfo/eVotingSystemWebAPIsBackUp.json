@@ -160,7 +160,7 @@
         }
       }
     },
-    "/api/Admin/delete-party/{id}": {
+    "/api/Admin/remove-party/{id}": {
       "delete": {
         "tags": [
           "Admin"
@@ -238,6 +238,38 @@
                 "idNo": {
                   "style": "form"
                 },
+                "liveImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Face/check-duplicate-face": {
+      "post": {
+        "tags": [
+          "Face"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "liveImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
                 "liveImage": {
                   "style": "form"
                 }
@@ -397,6 +429,18 @@
     },
     "/api/SuperAdmin/publish-results": {
       "post": {
+        "tags": [
+          "SuperAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SuperAdmin/get-election-dates": {
+      "get": {
         "tags": [
           "SuperAdmin"
         ],
@@ -781,7 +825,6 @@
       },
       "ElectionType": {
         "enum": [
-          1,
           2,
           4
         ],

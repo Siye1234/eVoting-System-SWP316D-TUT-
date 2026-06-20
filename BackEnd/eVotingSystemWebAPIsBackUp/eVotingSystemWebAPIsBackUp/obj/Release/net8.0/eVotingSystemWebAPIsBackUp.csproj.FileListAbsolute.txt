@@ -165,3 +165,5 @@ C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBac
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\eVotingSystemWebAPIsBackUp.pdb
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\eVotingSystemWebAPIsBackUp.genruntimeconfig.cache
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Release\net8.0\ref\eVotingSystemWebAPIsBackUp.dll
+C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\bin\Release\net8.0\AWSSDK.Core.dll
+C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\bin\Release\net8.0\AWSSDK.Rekognition.dll

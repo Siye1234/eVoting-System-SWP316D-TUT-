@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - eVoting System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+#matchMsg {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: gray;
+    color: white;
+    font-size: 16px;
+    cursor: not-allowed;
+    margin-top: 10px;
+}
+
+button.enabled {
+    background: #007bff;
+    cursor: pointer;
+}
+
+button.enabled:hover {
+    background: #0056b3;
+}
+
+.links {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+
+#responseMsg {
+    margin-top: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="card">
+
+    <h2>Create Account</h2>
+
+    <input type="text" id="idNo" placeholder="ID Number">
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="text" id="cellphone" placeholder="Cellphone Number">
+
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirmPassword" placeholder="Re-enter Password">
+
+    <div id="matchMsg"></div>
+
+    <button id="registerBtn" disabled onclick="register()">Register</button>
+
+    <div id="responseMsg"></div>
+
+    <div class="links">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+</div>
+
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - eVoting System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+#matchMsg {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: gray;
+    color: white;
+    font-size: 16px;
+    cursor: not-allowed;
+    margin-top: 10px;
+}
+
+button.enabled {
+    background: #007bff;
+    cursor: pointer;
+}
+
+button.enabled:hover {
+    background: #0056b3;
+}
+
+.links {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+#responseMsg {
+    margin-top: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="card">
+
+    <h2>Create Account</h2>
+
+    <input type="text" id="idNo" placeholder="ID Number">
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="text" id="cellphone" placeholder="Cellphone Number">
+
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirmPassword" placeholder="Re-enter Password">
+
+    <div id="matchMsg"></div>
+
+    <button id="registerBtn" disabled onclick="register()">Register</button>
+
+    <div id="responseMsg"></div>
+
+    <div class="links">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+const matchMsg = document.getElementById("matchMsg");
+const registerBtn = document.getElementById("registerBtn");
+
+// PASSWORD CHECK
+confirmPassword.addEventListener("input", checkPasswords);
+password.addEventListener("input", checkPasswords);
+
+function checkPasswords() {
+
+    if (password.value === "" || confirmPassword.value === "") {
+        matchMsg.innerText = "";
+        registerBtn.disabled = true;
+        registerBtn.classList.remove("enabled");
+        return;
+    }
+
+    if (password.value === confirmPassword.value) {
+        matchMsg.style.color = "lightgreen";
+        matchMsg.innerText = "Passwords match";
+
+        registerBtn.disabled = false;
+        registerBtn.classList.add("enabled");
+
+    } else {
+        matchMsg.style.color = "red";
+        matchMsg.innerText = "Passwords do not match";
+
+        registerBtn.disabled = true;
+        registerBtn.classList.remove("enabled");
+    }
+}
+
+/* ===============================
+   🇿🇦 RSA CELLPHONE VALIDATION
+   =============================== */
+function isValidRSAPhone(number) {
+
+    if (!number) return false;
+
+    // Remove spaces and trim
+    const cleaned = number.trim().replace(/\s+/g, "");
+
+    // MUST be exactly:
+    // 08XXXXXXXX (10 digits total)
+    const local = /^0[6-8][0-9]{8}$/;
+
+    // +27XXXXXXXXX (international format)
+    const international = /^\+27[6-8][0-9]{8}$/;
+
+    return local.test(cleaned) || international.test(cleaned);
+}
+
+// REGISTER FUNCTION
+async function register() {
+
+    const idNo = document.getElementById("idNo").value;
+    const email = document.getElementById("email").value;
+    const cellphone = document.getElementById("cellphone").value;
+    const passwordVal = document.getElementById("password").value;
+    const confirmPasswordVal = document.getElementById("confirmPassword").value;
+
+    const msg = document.getElementById("responseMsg");
+    msg.innerText = "";
+
+    // EMPTY FIELD CHECK
+    if (!idNo || !email || !cellphone || !passwordVal || !confirmPasswordVal) {
+        msg.style.color = "orange";
+        msg.innerText = "Please fill in all fields";
+        return;
+    }
+
+    // ===============================
+    // 🇿🇦 STRICT RSA PHONE CHECK
+    // ===============================
+    const phoneCleaned = cellphone.trim();
+
+    console.log("PHONE INPUT:", phoneCleaned);
+    console.log("VALID PHONE:", isValidRSAPhone(phoneCleaned));
+
+    if (!isValidRSAPhone(phoneCleaned)) {
+        msg.style.color = "red";
+        msg.innerText = "Invalid South African cellphone number (use 08XXXXXXXX or +27XXXXXXXXX)";
+        return;
+    }
+
+    const payload = {
+        idNo: idNo,
+        email: email,
+        phoneNumber: phoneCleaned,
+        password: passwordVal,
+        confirmPassword: confirmPasswordVal
+    };
+
+    try {
+
+        const response = await fetch("/api/Voter/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const text = await response.text();
+        console.log("SERVER RESPONSE:", text);
+
+        if (!response.ok) {
+            msg.style.color = "red";
+            msg.innerText = text;
+            return;
+        }
+
+        msg.style.color = "#22c55e";
+        msg.innerText = "Registration successful ✔";
+
+        setTimeout(() => {
+            window.location.href = "voter.html";
+        }, 1500);
+
+    } catch (error) {
+        console.error(error);
+        msg.style.color = "red";
+        msg.innerText = "Server not reachable";
+    }
+}
+
+</script>t>
+
+</body>
+</html>
+
+</body>
+</html>

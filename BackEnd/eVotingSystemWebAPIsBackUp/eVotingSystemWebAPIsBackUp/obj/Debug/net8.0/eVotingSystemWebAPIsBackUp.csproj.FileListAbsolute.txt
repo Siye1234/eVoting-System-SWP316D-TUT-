@@ -26,7 +26,6 @@ C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBac
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\staticwebassets.development.json
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\eVotingS.A89D3A49.Up2Date
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\eVotingSystemWebAPIsBackUp.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\refint\eVotingSystemWebAPIsBackUp.dll
@@ -167,3 +166,4 @@ C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBac
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\bin\Debug\net8.0\eVotingSystemWebAPIsBackUp.staticwebassets.runtime.json
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\bin\Debug\net8.0\AWSSDK.Rekognition.dll
+C:\CS316D\SWP Project\BackEnd\eVotingSystemWebAPIsBackUp\eVotingSystemWebAPIsBackUp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
