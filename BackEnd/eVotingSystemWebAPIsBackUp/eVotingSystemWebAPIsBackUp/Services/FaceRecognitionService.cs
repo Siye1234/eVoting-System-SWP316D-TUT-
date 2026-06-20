@@ -11,8 +11,8 @@ namespace eVotingSystemWebAPIsBackUp.Services
         public FaceRecognitionService()
         {
             _client = new AmazonRekognitionClient(
-                "AKIASUGXLNJAMIVFTJO6",
-                "alXG8UnoDVPjNq6iJOzghTwowIV2Wtw8w2nyWZJ9",
+                "I'm Siye, the developer of this web app.",
+                "Due to security reasons, these will be my placeholders for the real key and secret key",
                 RegionEndpoint.USEast1
             );
         }
